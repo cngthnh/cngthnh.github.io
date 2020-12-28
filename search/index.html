@@ -8,12 +8,29 @@
 <link rel="stylesheet" href="/scss/style.min.css"><meta property='og:title' content='Search'>
 <meta property='og:description' content=''>
 <meta property='og:url' content='https://cngthnh.github.io/search/'>
-<meta property='og:site_name' content='cngthnh - tech for noobs'>
+<meta property='og:site_name' content='@cngthnh | tech for noobs'>
 <meta property='og:type' content='article'><meta property='article:section' content='Page' />
 <meta name="twitter:title" content="Search">
 <meta name="twitter:description" content=""><link rel="alternate" type="application/json" href="https://cngthnh.github.io/search/index.json">
-    <link rel="shortcut icon" href="img/favicon.png" />
-<link rel="preload" href="https://cngthnh.github.io/search/index.json" as="fetch" crossorigin="anonymous">
+    <link rel="shortcut icon" href="favicon.png" />
+<style>
+		
+    :root {
+        --base-font-family: "Open Sans", var(--sys-font-family), var(--zh-font-family), sans-serif;
+    }
+</style>
+
+<script>
+		(function () {
+		    const customFont = document.createElement('link');
+		    customFont.href = "<https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap>";
+		
+		    customFont.type = "text/css";
+		    customFont.rel = "stylesheet";
+		
+		    document.head.appendChild(customFont);
+		}());
+</script><link rel="preload" href="https://cngthnh.github.io/search/index.json" as="fetch" crossorigin="anonymous">
     </head>
     <body class="template-search">
     <script>
@@ -63,7 +80,7 @@
                 
             </figure>
         
-        <h1 class="site-name"><a href="https://cngthnh.github.io">cngthnh - tech for noobs</a></h1>
+        <h1 class="site-name"><a href="https://cngthnh.github.io">@cngthnh | tech for noobs</a></h1>
         <h2 class="site-description">Imma noob trying to figure out what data is</h2>
     </header>
 
@@ -85,7 +102,7 @@
 
 
                 
-                <span>Home</span>
+                <span>Trang chủ</span>
             </a>
         </li>
         
@@ -103,7 +120,7 @@
 
 
                 
-                <span>About</span>
+                <span>Thông tin</span>
             </a>
         </li>
         
@@ -122,13 +139,13 @@
 
 
                 
-                <span>Archives</span>
+                <span>Lưu trữ</span>
             </a>
         </li>
         
         
 
-        <li  class='current' >
+        <li >
             <a href='/search'>
                 
                     <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -140,7 +157,7 @@
 
 
                 
-                <span>Search</span>
+                <span>Tìm kiếm</span>
             </a>
         </li>
         
@@ -172,8 +189,8 @@
             <main class="main full-width">
 <form action="https://cngthnh.github.io/search/" class="search-form"data-json="https://cngthnh.github.io/search/index.json">
     <p>
-        <label>Search</label>
-        <input name="keyword" placeholder="Type something..." />
+        <label>Tìm kiếm</label>
+        <input name="keyword" placeholder="Nhập gì đó..." />
     </p>
 
     <button title="Search">
@@ -192,14 +209,14 @@
 <div class="search-result--list article-list--compact"></div>
 
 <script>
-    window.searchResultTitleTemplate = "#PAGES_COUNT pages (#TIME_SECONDS seconds)"
+    window.searchResultTitleTemplate = "#PAGES_COUNT trang (#TIME_SECONDS giây)"
 </script><script type="text/javascript" src="/ts/search.js" defer></script>
 
 <footer class="site-footer">
     <section class="copyright">
         &copy; 
         
-        2020 cngthnh - tech for noobs
+        2020 @cngthnh | tech for noobs
     </section>
     
     <section class="powerby">

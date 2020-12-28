@@ -1,12 +1,25 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Pages on cngthnh - tech for noobs</title>
+    <title>Pages on @cngthnh | tech for noobs</title>
     <link>https://cngthnh.github.io/page/</link>
-    <description>Recent content in Pages on cngthnh - tech for noobs</description>
+    <description>Recent content in Pages on @cngthnh | tech for noobs</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>vi-vn</language>
-    <lastBuildDate>Tue, 28 May 2019 00:00:00 +0000</lastBuildDate><atom:link href="https://cngthnh.github.io/page/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 28 Dec 2019 00:00:00 +0000</lastBuildDate><atom:link href="https://cngthnh.github.io/page/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>About</title>
+      <link>https://cngthnh.github.io/about/</link>
+      <pubDate>Sat, 28 Dec 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://cngthnh.github.io/about/</guid>
+      <description>Một sinh viên Khoa học Máy tính đến từ Trường Đại học Khoa học Tự nhiên - ĐHQGHCM.
+Những bài viết trên trang này được viết ra để giúp tôi ghi nhớ những kiến thức mình đã được tiếp thu.
+  Xem thêm các project khác trên GitHub
+  Hoặc theo dõi tôi trên Facebook
+  </description>
+    </item>
+    
     <item>
       <title>Archives</title>
       <link>https://cngthnh.github.io/archives/</link>
@@ -14,17 +27,6 @@
       
       <guid>https://cngthnh.github.io/archives/</guid>
       <description></description>
-    </item>
-    
-    <item>
-      <title>About</title>
-      <link>https://cngthnh.github.io/about/</link>
-      <pubDate>Thu, 28 Feb 2019 00:00:00 +0000</pubDate>
-      
-      <guid>https://cngthnh.github.io/about/</guid>
-      <description>Written in Go, Hugo is an open source static site generator available under the Apache Licence 2.0. Hugo supports TOML, YAML and JSON data file types, Markdown and HTML content files and uses shortcodes to add rich content. Other notable features are taxonomies, multilingual mode, image processing, custom output formats, HTML/CSS/JS minification and support for Sass SCSS workflows.
-Hugo makes use of a variety of open source projects including:
- https://github.</description>
     </item>
     
     <item>
