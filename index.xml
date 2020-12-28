@@ -1,0 +1,536 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>cngthnh - tech for noobs</title>
+        <link>https://cngthnh.github.io/</link>
+        <description>Recent content on cngthnh - tech for noobs</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>vi-vn</language>
+        <lastBuildDate>Sun, 27 Dec 2020 23:55:10 +0700</lastBuildDate><atom:link href="https://cngthnh.github.io/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>Thuật toán sắp xếp</title>
+        <link>https://cngthnh.github.io/p/thu%E1%BA%ADt-to%C3%A1n-s%E1%BA%AFp-x%E1%BA%BFp/</link>
+        <pubDate>Sun, 27 Dec 2020 23:55:10 +0700</pubDate>
+        
+        <guid>https://cngthnh.github.io/p/thu%E1%BA%ADt-to%C3%A1n-s%E1%BA%AFp-x%E1%BA%BFp/</guid>
+        <description>&lt;img src="https://cngthnh.github.io/p/thu%E1%BA%ADt-to%C3%A1n-s%E1%BA%AFp-x%E1%BA%BFp/sort.png" alt="Featured image of post Thuật toán sắp xếp" /&gt;&lt;h3 id=&#34;trình-bày-thuật-toán&#34;&gt;Trình bày thuật toán&lt;/h3&gt;
+&lt;h4 id=&#34;selection-sort&#34;&gt;Selection Sort&lt;/h4&gt;
+&lt;h5 id=&#34;ý-tưởng&#34;&gt;Ý tưởng&lt;/h5&gt;
+&lt;p style=&#39;text-align: justify;&#39;&gt;
+    Với trường hợp sắp xếp mảng tăng dần có &lt;b&gt;&lt;i&gt;n&lt;/i&gt;&lt;/b&gt; phần tử, thuật toán Selection Sort (sắp xếp chọn) chia mảng thành 2 mảng con đã sắp xếp và chưa sắp xếp. Sau đó, tìm phần tử nhỏ nhất của mảng con chưa sắp xếp và di chuyển phần tử đó về cuối mảng con đã sắp xếp. Ban đầu chưa có phần tử nào được sắp xếp, phần tử được chọn để so sánh là phần tử đầu tiên của mảng, so sánh phần tử đó với phần tử nhỏ nhất trong &lt;b&gt;&lt;i&gt;n-1&lt;/i&gt;&lt;/b&gt; phần tử còn lại, nếu phần tử được chọn lớn hơn phần tử nhỏ nhất của mảng con còn lại thì đổi chỗ 2 phần tử đó cho nhau. Tại mỗi vòng lặp, phần tử được chọn sẽ có vị trí tiến lên 1 đơn vị so với vòng lặp trước do sau mỗi vòng lặp sẽ có thêm 1 phần tử được di chuyển vào mảng con đã sắp xếp.
+&lt;/p&gt;
+&lt;h5 id=&#34;minh-hoạ-thuật-toán&#34;&gt;Minh hoạ thuật toán&lt;/h5&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-c++&#34; data-lang=&#34;c++&#34;&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;void&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;selectionSort&lt;/span&gt;(&lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt; a, &lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; n)
+{
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; (&lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; i &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;; i &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;&lt;/span&gt; n &lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;; i&lt;span style=&#34;color:#f92672&#34;&gt;++&lt;/span&gt;)
+    {
+        &lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; min &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; i; 
+        &lt;span style=&#34;color:#75715e&#34;&gt;//phần tử thứ i là phần tử được chọn, phần tử này tạm thời là min
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;        &lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; (&lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; j &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; i &lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;; j &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;&lt;/span&gt; n; j&lt;span style=&#34;color:#f92672&#34;&gt;++&lt;/span&gt;) &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; (a[j] &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;&lt;/span&gt; a[min]) min &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; j; 
+        &lt;span style=&#34;color:#75715e&#34;&gt;//so sánh từng phần tử trong mảng con chưa sắp xếp với min hiện tại, nếu nhỏ hơn thì đó là min
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;        swap(a[min], a[i]); &lt;span style=&#34;color:#75715e&#34;&gt;//đổi chỗ min và phần tử được chọn
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;    }
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div style=&#39;text-align: center;&#39;&gt;
+    &lt;img src=&#39;selection-sort-example.png&#39; width=&#39;50%&#39; alt=&#39;Selection Sort&#39;&gt;&lt;br&gt;
+    &lt;p&gt;
+	Thay đổi của các phần tử trên mảng qua mỗi vòng lặp, phần tử có dấu * được đổi chỗ với phần tử đầu tiên trong mảng chưa sắp xếp (mảng màu xanh lá)
+    &lt;/p&gt;
+&lt;/div&gt;
+&lt;h5 id=&#34;đánh-giá-thuật-toán&#34;&gt;Đánh giá thuật toán&lt;/h5&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Độ phức tạp thời gian:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Xấu nhất: &lt;em&gt;&lt;strong&gt;O(n&lt;sup&gt;2&lt;/sup&gt;)&lt;/strong&gt;&lt;/em&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Trung bình: &lt;em&gt;&lt;strong&gt;O(n&lt;sup&gt;2&lt;/sup&gt;)&lt;/strong&gt;&lt;/em&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Tốt nhất: &lt;em&gt;&lt;strong&gt;O(n&lt;sup&gt;2&lt;/sup&gt;)&lt;/strong&gt;&lt;/em&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Bộ nhớ sử dụng: &lt;em&gt;&lt;strong&gt;O(1)&lt;/strong&gt;&lt;/em&gt; do không sử dụng mảng phụ&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;insertion-sort&#34;&gt;Insertion Sort&lt;/h4&gt;
+&lt;h5 id=&#34;ý-tưởng-1&#34;&gt;Ý tưởng&lt;/h5&gt;
+&lt;p style=&#39;text-align: justify;&#39;&gt;
+    Thuật toán Insertion Sort (sắp xếp chèn) duyệt từng phần tử và chèn phần tử đó vào mảng con (là mảng từ phần tử đầu tiên đến phần tử phía trước phần tử đã chọn) đã sắp xếp sao cho mảng đã sắp xếp đó vẫn giữ nguyên tính chất tăng hoặc giảm.
+&lt;/p&gt;
+&lt;h5 id=&#34;minh-hoạ-thuật-toán-1&#34;&gt;Minh hoạ thuật toán&lt;/h5&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-c++&#34; data-lang=&#34;c++&#34;&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;void&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;insertionSort&lt;/span&gt;(&lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt; a, &lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; n)
+{
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; i, j, key;
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; (i &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;; i &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;&lt;/span&gt; n; i&lt;span style=&#34;color:#f92672&#34;&gt;++&lt;/span&gt;) 
+    &lt;span style=&#34;color:#75715e&#34;&gt;//duyệt i từ 1 đến n, vì mảng con có 1 phần tử ở vị trí 0 luôn luôn đã được sắp xếp
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;    {
+        key &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; a[i]; 
+        &lt;span style=&#34;color:#75715e&#34;&gt;//chọn phần tử thứ i để chèn vào mảng con gồm các phần tử đứng trước i
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;        &lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; (j &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; i &lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;; j &lt;span style=&#34;color:#f92672&#34;&gt;&amp;gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;; j&lt;span style=&#34;color:#f92672&#34;&gt;--&lt;/span&gt;) 
+        &lt;span style=&#34;color:#75715e&#34;&gt;//duyệt mảng con đứng trước i (mảng này đã sắp xếp tăng hoặc giảm)
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;        {
+            &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; (a[j] &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;=&lt;/span&gt; key) &lt;span style=&#34;color:#66d9ef&#34;&gt;break&lt;/span&gt;; 
+            &lt;span style=&#34;color:#75715e&#34;&gt;//nếu a[j] &amp;lt;= key thì cần chèn key vào vị trí thứ j+1 để giữ nguyên tính chất của mảng con đứng trước i
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;            a[j &lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;] &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; a[j]; 
+            &lt;span style=&#34;color:#75715e&#34;&gt;//nếu vẫn chưa tìm thấy vị trí cần chèn thì dời các phần tử lên 1 đơn vị để chừa chỗ chèn key
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;        }
+        a[j &lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;] &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; key; chèn key vào vị trí j&lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div style=&#39;text-align: center;&#39;&gt;
+    &lt;img src=&#39;insertion_sort2.png&#39; width=&#39;50%&#39; alt=&#39;Insertion Sort&#39;&gt;&lt;br&gt;
+    &lt;p&gt;
+	Thay đổi của các phần tử trên mảng qua mỗi vòng lặp, các phần tử được di chuyển theo hướng mũi tên
+    &lt;/p&gt;
+&lt;/div&gt;
+&lt;h5 id=&#34;đánh-giá-thuật-toán-1&#34;&gt;Đánh giá thuật toán&lt;/h5&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Độ phức tạp thời gian:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Xấu nhất: &lt;em&gt;&lt;strong&gt;O(n&lt;sup&gt;2&lt;/sup&gt;)&lt;/strong&gt;&lt;/em&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Trung bình: &lt;em&gt;&lt;strong&gt;O(n&lt;sup&gt;2&lt;/sup&gt;)&lt;/strong&gt;&lt;/em&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Tốt nhất: &lt;em&gt;&lt;strong&gt;O(n)&lt;/strong&gt;&lt;/em&gt; - trong trường hợp mảng đã sắp xếp sẵn&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Bộ nhớ sử dụng: &lt;em&gt;&lt;strong&gt;O(1)&lt;/strong&gt;&lt;/em&gt; do không sử dụng mảng phụ&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;bubble-sort&#34;&gt;Bubble Sort&lt;/h4&gt;
+&lt;h5 id=&#34;ý-tưởng-2&#34;&gt;Ý tưởng&lt;/h5&gt;
+&lt;p style=&#39;text-align: justify;&#39;&gt;
+    Thuật toán Bubble Sort (sắp xếp nổi bột) lặp lại công việc đổi chỗ 2 số kế nhau nếu chúng đang đứng sai thứ tự cho đến khi mảng được sắp xếp. Trong mỗi chu trình nổi bọt, giá trị lớn nhất (hoặc nhỏ nhất) trong mảng chưa sắp xếp sẽ dần dần “nổi” lên trên, nhập vào mảng đã sắp xếp.
+&lt;/p&gt;
+&lt;h5 id=&#34;minh-hoạ-thuật-toán-2&#34;&gt;Minh hoạ thuật toán&lt;/h5&gt;
+&lt;p style=&#39;text-align: justify;&#39;&gt;
+    Trong cài đặt Bubble Sort này, đã cải tiến bằng cách đặt 1 flag đánh dấu nếu không có sự hoán vị nào xảy ra (tức là mảng đã được sắp xếp và không cần chạy các vòng lặp còn lại nữa).
+&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-c++&#34; data-lang=&#34;c++&#34;&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;void&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;bubbleSort&lt;/span&gt;(&lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt; a, &lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; n)
+{
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;bool&lt;/span&gt; isSwapped &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;; &lt;span style=&#34;color:#75715e&#34;&gt;//flag đánh dấu mảng đã được sắp xếp hay chưa
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; (&lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; i &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;; i &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;&lt;/span&gt; n &lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;; i&lt;span style=&#34;color:#f92672&#34;&gt;++&lt;/span&gt;)
+    {
+        &lt;span style=&#34;color:#75715e&#34;&gt;//phần tử cuối cùng luôn nằm đúng vị trí
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;        isSwapped &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;;
+        &lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; (&lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; j &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;; j &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;&lt;/span&gt; n &lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt; i &lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;; j&lt;span style=&#34;color:#f92672&#34;&gt;++&lt;/span&gt;)
+        &lt;span style=&#34;color:#75715e&#34;&gt;//duyệt các phần tử chưa được sắp xếp và đẩy phần tử lớn nhất (hoặc nhỏ nhất) lên cuối dãy
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;        &lt;span style=&#34;color:#75715e&#34;&gt;//duyệt j &amp;lt; n - i - 1 vì xét phần tử kế là j+1 = n - i =&amp;gt; không tràn sang mảng con đã sắp xếp ở cuối dãy
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;            &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; (a[j] &lt;span style=&#34;color:#f92672&#34;&gt;&amp;gt;&lt;/span&gt; a[j &lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;])
+            {
+                swap(a[j], a[j &lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;]);
+                &lt;span style=&#34;color:#75715e&#34;&gt;//nếu 2 phần tử kế nhau nằm sai vị trí thì đổi chỗ
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;                isSwapped &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;;
+            }
+        &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; (&lt;span style=&#34;color:#f92672&#34;&gt;!&lt;/span&gt;isSwapped) &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt;;
+        &lt;span style=&#34;color:#75715e&#34;&gt;//nếu đã sắp xếp thì dừng
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;    }
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div style=&#39;text-align: center;&#39;&gt;
+    &lt;img src=&#39;bubble_sort.png&#39; width=&#39;80%&#39; alt=&#39;Bubble Sort&#39;&gt;&lt;br&gt;
+    &lt;p&gt;
+	Đổi chỗ 2 ô màu xanh lá qua mỗi bước, những ô màu xám đã được sắp xếp, ô màu trắng chưa được sắp xếp
+    &lt;/p&gt;
+&lt;/div&gt;
+&lt;h5 id=&#34;đánh-giá-thuật-toán-2&#34;&gt;Đánh giá thuật toán&lt;/h5&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Độ phức tạp thời gian:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Xấu nhất: &lt;em&gt;&lt;strong&gt;O(n&lt;sup&gt;2&lt;/sup&gt;)&lt;/strong&gt;&lt;/em&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Trung bình: &lt;em&gt;&lt;strong&gt;O(n&lt;sup&gt;2&lt;/sup&gt;)&lt;/strong&gt;&lt;/em&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Tốt nhất: &lt;em&gt;&lt;strong&gt;O(n)&lt;/strong&gt;&lt;/em&gt; - trong trường hợp mảng đã sắp xếp sẵn, vòng lặp chạy 1 lần rồi được gắn cờ đã sắp xếp và dừng hàm.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Bộ nhớ sử dụng: &lt;em&gt;&lt;strong&gt;O(1)&lt;/strong&gt;&lt;/em&gt; do không sử dụng mảng phụ&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;merge-sort&#34;&gt;Merge Sort&lt;/h4&gt;
+&lt;h5 id=&#34;ý-tưởng-3&#34;&gt;Ý tưởng&lt;/h5&gt;
+&lt;p style=&#39;text-align: justify;&#39;&gt;
+    Thuật toán Merge Sort (sắp xếp trộn) là một thuật toán chia để trị, thuật toán này sẽ chia mảng ra thành 2 mảng con, và tiếp tục công việc này với các mảng con đã chia cho tới khi nào những mảng con chỉ còn lại 1 phần tử, khi đó mỗi mảng con đều đã được sắp xếp do chỉ có 1 phần tử. Sau đó, thực hiện trộn các mảng con đã sắp xếp lại thành mảng con lớn hơn, lặp lại việc trộn mảng đến khi ta có mảng kết quả là toàn bộ các phần tử ban đầu đã được sắp xếp.
+&lt;/p&gt;
+&lt;h5 id=&#34;minh-hoạ-thuật-toán-3&#34;&gt;Minh hoạ thuật toán&lt;/h5&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-c++&#34; data-lang=&#34;c++&#34;&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;void&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;merge&lt;/span&gt;(&lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt; a, &lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; l, &lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; m, &lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; r)
+{
+    &lt;span style=&#34;color:#75715e&#34;&gt;/*đoạn này copy mảng con trái vào mảng L, mảng con phải vào mảng R; mảng con L có n1 phần tử, R có n2 phần tử*/&lt;/span&gt;
+
+    &lt;span style=&#34;color:#75715e&#34;&gt;//thực hiện trộn 2 mảng L và R như sau: 
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; (&lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; k &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; l; k &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;=&lt;/span&gt; r; k&lt;span style=&#34;color:#f92672&#34;&gt;++&lt;/span&gt;)
+    {
+        &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; (i &lt;span style=&#34;color:#f92672&#34;&gt;&amp;gt;&lt;/span&gt; n1&lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;) a[k] &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; R[j&lt;span style=&#34;color:#f92672&#34;&gt;++&lt;/span&gt;]; &lt;span style=&#34;color:#75715e&#34;&gt;// nếu đã hết phần tử trong mảng L thì chỉ cho những phần tử của mảng R vào mảng kết quả
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;        &lt;span style=&#34;color:#66d9ef&#34;&gt;else&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; (j &lt;span style=&#34;color:#f92672&#34;&gt;&amp;gt;&lt;/span&gt; n2&lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;) a[k] &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; L[i&lt;span style=&#34;color:#f92672&#34;&gt;++&lt;/span&gt;]; &lt;span style=&#34;color:#75715e&#34;&gt;// nếu đã hết phần tử trong R thì cho những phần tử của L vào mảng kết quả 
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;        &lt;span style=&#34;color:#66d9ef&#34;&gt;else&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; (L[i] &lt;span style=&#34;color:#f92672&#34;&gt;&amp;gt;&lt;/span&gt; R[j]) a[k] &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; R[j&lt;span style=&#34;color:#f92672&#34;&gt;++&lt;/span&gt;]; &lt;span style=&#34;color:#75715e&#34;&gt;//nếu L[i]&amp;gt;R[j] thì cho R[j] vào mảng kết quả
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;        &lt;span style=&#34;color:#66d9ef&#34;&gt;else&lt;/span&gt; a[k] &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; L[i&lt;span style=&#34;color:#f92672&#34;&gt;++&lt;/span&gt;]; &lt;span style=&#34;color:#75715e&#34;&gt;//còn lại thì cho L[i] vào mảng kết quả (nếu L[i]==R[j] thì cho L[i] vào mảng, L luôn nằm bên trái R nên đảm bảo tính ổn định)
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;    }
+}
+&lt;span style=&#34;color:#66d9ef&#34;&gt;void&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;mergeSort&lt;/span&gt;(&lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt; a, &lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; l, &lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; r) {
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; (l &lt;span style=&#34;color:#f92672&#34;&gt;&amp;gt;=&lt;/span&gt; r)  &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt;;
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; m &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; (l &lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt; r &lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;) &lt;span style=&#34;color:#f92672&#34;&gt;/&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;2&lt;/span&gt;; &lt;span style=&#34;color:#75715e&#34;&gt;//phần tử giữa mảng
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;    mergeSort(a, l, m); &lt;span style=&#34;color:#75715e&#34;&gt;//gọi đệ quy mảng con từ m trở về bên trái
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;    mergeSort(a, m &lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;, r); &lt;span style=&#34;color:#75715e&#34;&gt;//gọi đệ quy mảng con bên phải m
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;    merge(a, l, m, r); &lt;span style=&#34;color:#75715e&#34;&gt;//gộp 2 mảng con
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div style=&#39;text-align: center;&#39;&gt;
+    &lt;img src=&#39;Merge-Sort-Algorithm.png&#39; alt=&#39;Merge Sort&#39;&gt;&lt;br&gt;
+    &lt;p&gt;
+	Màu tím là quá trình chia mảng thành các mảng con, màu xanh là quá trình trộn mảng, chia đến khi thành các mảng chỉ có 1 phần tử sau đó trộn các mảng đó lại
+    &lt;/p&gt;
+&lt;/div&gt;
+&lt;h5 id=&#34;đánh-giá-thuật-toán-3&#34;&gt;Đánh giá thuật toán&lt;/h5&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Độ phức tạp thời gian:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Xấu nhất: &lt;em&gt;&lt;strong&gt;O(nlog&lt;sub&gt;2&lt;/sub&gt;n)&lt;/strong&gt;&lt;/em&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Trung bình: &lt;em&gt;&lt;strong&gt;O(nlog&lt;sub&gt;2&lt;/sub&gt;n)&lt;/strong&gt;&lt;/em&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Tốt nhất: &lt;em&gt;&lt;strong&gt;O(nlog&lt;sub&gt;2&lt;/sub&gt;n)&lt;/strong&gt;&lt;/em&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Bộ nhớ sử dụng: &lt;em&gt;&lt;strong&gt;O(n)&lt;/strong&gt;&lt;/em&gt; do phải sử dụng các mảng con tạm để lưu giá trị trước khi trộn chúng thành mảng kết quả&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;quick-sort&#34;&gt;Quick Sort&lt;/h4&gt;
+&lt;h5 id=&#34;ý-tưởng-4&#34;&gt;Ý tưởng&lt;/h5&gt;
+&lt;p style=&#39;text-align: justify;&#39;&gt;
+    Thuật toán Quick Sort là một thuật toán chia để trị với mấu chốt là thuật toán phân hoạch, chọn một phần tử trên mảng làm phần tử đánh dấu (pivot), sau đó di chuyển tất cả các phần tử nhỏ hơn pivot sang bên trái và các phần tử lớn hơn pivot sang bên phải. Lặp lại việc này với mỗi phân đoạn đã chia ta sẽ có được mảng đã sắp xếp
+&lt;/p&gt;
+&lt;h5 id=&#34;minh-hoạ-thuật-toán-4&#34;&gt;Minh hoạ thuật toán&lt;/h5&gt;
+&lt;p style=&#39;text-align: justify;&#39;&gt;
+    Trong cài đặt này, sử dụng pivot ngẫu nhiên sẽ tránh được trường hợp xấu với mảng sắp xếp ngược
+&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-c++&#34; data-lang=&#34;c++&#34;&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;void&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;quickSort&lt;/span&gt;(&lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt; a, &lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; l, &lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; r)
+{
+    srand(time(NULL)); 
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; key &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; a[l &lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt; rand() &lt;span style=&#34;color:#f92672&#34;&gt;%&lt;/span&gt; (r &lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt; l &lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;)];
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; i &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; l, j &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; r;
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;while&lt;/span&gt; (i &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;=&lt;/span&gt; j) &lt;span style=&#34;color:#75715e&#34;&gt;//nếu đã duyệt hết mảng thì dừng vòng lặp
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;    {
+        &lt;span style=&#34;color:#66d9ef&#34;&gt;while&lt;/span&gt; (a[i] &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;&lt;/span&gt; key) i&lt;span style=&#34;color:#f92672&#34;&gt;++&lt;/span&gt;; &lt;span style=&#34;color:#75715e&#34;&gt;//tìm phần tử bên trái lớn hơn pivot
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;        &lt;span style=&#34;color:#66d9ef&#34;&gt;while&lt;/span&gt; (a[j] &lt;span style=&#34;color:#f92672&#34;&gt;&amp;gt;&lt;/span&gt; key) j&lt;span style=&#34;color:#f92672&#34;&gt;--&lt;/span&gt;; &lt;span style=&#34;color:#75715e&#34;&gt;//tìm phần tử bên phải nhỏ hơn pivot
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;        &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; (i &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;=&lt;/span&gt; j)
+        {
+            &lt;span style=&#34;color:#75715e&#34;&gt;//nếu i vẫn nằm bên trái pivot và j vẫn nằm bên phải pivot và phần tử a[i]&amp;gt;a[j] thì đổi chỗ 2 phần tử này
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;            &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; (i &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;&lt;/span&gt; j) swap(a[i], a[j]);
+            &lt;span style=&#34;color:#75715e&#34;&gt;//đã xử lý xong 2 phần tử này, tăng i, giảm j để sang phần tử khác
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;            i&lt;span style=&#34;color:#f92672&#34;&gt;++&lt;/span&gt;;
+            j&lt;span style=&#34;color:#f92672&#34;&gt;--&lt;/span&gt;;
+        }
+    }
+    &lt;span style=&#34;color:#75715e&#34;&gt;//nếu l&amp;lt;j tức là mảng con bên trái còn nhiều hơn 1 phần tử, tiếp tục lặp lại thao tác cho mảng con bên trái
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; (l &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;&lt;/span&gt; j) quickSort(a, l, j);
+    &lt;span style=&#34;color:#75715e&#34;&gt;//nếu i&amp;lt;r tức là mảng con bên phải còn nhiều hơn 1 phần tử, tiếp tục lặp lại thao tác cho mảng con bên phải
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; (i &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;&lt;/span&gt; r) quickSort(a, i, r); 
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div style=&#39;text-align: center;&#39;&gt;
+    &lt;img src=&#39;quicksort.png&#39; alt=&#39;Quick Sort&#39; width=&#39;80%&#39;&gt;&lt;br&gt;
+    &lt;p&gt;
+	Các phần tử khác màu tím là các phần tử được chọn làm pivot trong mỗi phân đoạn, các phân tử màu tím nhỏ hơn sẽ được di chuyển về bên trái pivot, lớn hơn sẽ di chuyển về bên phải pivot
+    &lt;/p&gt;
+&lt;/div&gt;
+&lt;h5 id=&#34;đánh-giá-thuật-toán-4&#34;&gt;Đánh giá thuật toán&lt;/h5&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Độ phức tạp thời gian:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Xấu nhất: &lt;em&gt;&lt;strong&gt;O(n&lt;sup&gt;2&lt;/sup&gt;)&lt;/strong&gt;&lt;/em&gt; - trong trường hợp pivot luôn bị random trúng phần tử lớn nhất (hoặc bé nhất)&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Trung bình: &lt;em&gt;&lt;strong&gt;O(nlog&lt;sub&gt;2&lt;/sub&gt;n)&lt;/strong&gt;&lt;/em&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Tốt nhất: &lt;em&gt;&lt;strong&gt;O(nlog&lt;sub&gt;2&lt;/sub&gt;n)&lt;/strong&gt;&lt;/em&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Bộ nhớ sử dụng: &lt;em&gt;&lt;strong&gt;O(nlog&lt;sub&gt;2&lt;/sub&gt;n)&lt;/strong&gt;&lt;/em&gt; trong trường hợp trung bình và &lt;em&gt;&lt;strong&gt;O(n)&lt;/strong&gt;&lt;/em&gt; trong trường hợp pivot luôn bị random trúng phần tử lớn nhất (hoặc bé nhất) khiến việc phân hoạch bị lệch thành 1 mảng con có &lt;em&gt;&lt;strong&gt;1&lt;/strong&gt;&lt;/em&gt; phần tử và mảng con còn lại có &lt;em&gt;&lt;strong&gt;n-1&lt;/strong&gt;&lt;/em&gt; phần tử =&amp;gt; sử dụng &lt;em&gt;&lt;strong&gt;n&lt;/strong&gt;&lt;/em&gt; callstack&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;heap-sort&#34;&gt;Heap Sort&lt;/h4&gt;
+&lt;h5 id=&#34;ý-tưởng-5&#34;&gt;Ý tưởng&lt;/h5&gt;
+&lt;p style=&#39;text-align: justify;&#39;&gt;
+    Heap Sort có thể được xem là phiên bản cải tiến của Selection Sort với cơ chế tìm phần tử lớn nhất (hoặc nhỏ nhất) của mảng con chưa sắp xếp và di chuyển vào mảng con đã sắp xếp. Khác biệt nằm ở chỗ Heap Sort sử dụng cấu trúc heap để tìm phần tử lớn nhất (hoặc nhỏ nhất) thay vì tìm kiếm tuyến tính. Cấu trúc heap có thể biểu diễn ở dạng cây nhị phân cân bằng như bên dưới để dễ hình dung cách hoạt động của thuật toán này.
+&lt;/p&gt;
+&lt;h5 id=&#34;minh-hoạ-thuật-toán-5&#34;&gt;Minh hoạ thuật toán&lt;/h5&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-c++&#34; data-lang=&#34;c++&#34;&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;void&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;heapify&lt;/span&gt;(&lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt; a, &lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; n, &lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; i)
+{
+    &lt;span style=&#34;color:#75715e&#34;&gt;//giá trị lớn nhất là giá trị tại nút đang xét
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; largest &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; i;
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; l &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;2&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt; i &lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;; &lt;span style=&#34;color:#75715e&#34;&gt;//vị trí nút con bên trái
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; r &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;2&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt; i &lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;2&lt;/span&gt;; &lt;span style=&#34;color:#75715e&#34;&gt;//vị trí nút con bên phải
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;    &lt;span style=&#34;color:#75715e&#34;&gt;//nếu nút con bên trái lớn hơn nút đang xét thì gán nút con trái là lớn nhất
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; (l &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;&lt;/span&gt; n &lt;span style=&#34;color:#f92672&#34;&gt;&amp;amp;&amp;amp;&lt;/span&gt; a[l] &lt;span style=&#34;color:#f92672&#34;&gt;&amp;gt;&lt;/span&gt; a[largest]) largest &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; l;
+    &lt;span style=&#34;color:#75715e&#34;&gt;//nếu nút con bên phải lớn hơn nút đang xét thì gán nút con phải là lớn nhất
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; (r &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;&lt;/span&gt; n &lt;span style=&#34;color:#f92672&#34;&gt;&amp;amp;&amp;amp;&lt;/span&gt; a[r] &lt;span style=&#34;color:#f92672&#34;&gt;&amp;gt;&lt;/span&gt; a[largest]) largest &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; r;
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; (largest &lt;span style=&#34;color:#f92672&#34;&gt;!=&lt;/span&gt; i) 
+    {
+        &lt;span style=&#34;color:#75715e&#34;&gt;//nếu giá trị lớn nhất không phải là nút cha thì hoán đổi giá trị nút cha và nút con lớn nhất để nút cha trở thành lớn nhất và đệ quy với nút con vừa đổi giá trị để đảm bảo nút cha luôn lớn hơn nút con trên toàn bộ cây
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;        swap(a[i], a[largest]);
+        heapify(a, n, largest);
+    }
+}
+&lt;span style=&#34;color:#66d9ef&#34;&gt;void&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;heapSort&lt;/span&gt;(&lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt; a, &lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; n)
+{
+    &lt;span style=&#34;color:#75715e&#34;&gt;//thực hiện tái cấu trúc mảng ban đầu thành heap (nút cha luôn lớn hơn nút con)
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;    &lt;span style=&#34;color:#75715e&#34;&gt;//các nút lớn hơn n/2-1 là các nút lá nên không cần xây dựng heap
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; (&lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; i &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; n &lt;span style=&#34;color:#f92672&#34;&gt;/&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;2&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;; i &lt;span style=&#34;color:#f92672&#34;&gt;&amp;gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;; i&lt;span style=&#34;color:#f92672&#34;&gt;--&lt;/span&gt;) heapify(a, n, i);
+    &lt;span style=&#34;color:#75715e&#34;&gt;//vì nút cha là nút lớn nhất nên ta sẽ đổi giá trị ở nút cha và nút lá cuối cùng bên phải và ngắt nút lá đó ra khỏi cây
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;    &lt;span style=&#34;color:#75715e&#34;&gt;//nút lá đó chính là phần tử đã được sắp xếp
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; (&lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; i &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; n &lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;; i &lt;span style=&#34;color:#f92672&#34;&gt;&amp;gt;&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;; i&lt;span style=&#34;color:#f92672&#34;&gt;--&lt;/span&gt;)
+    {
+        swap(a[&lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;], a[i]);
+        heapify(a, i, &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;); &lt;span style=&#34;color:#75715e&#34;&gt;//thực hiện build heap lại với nút cha mới
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;    }
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div style=&#39;text-align: center;&#39;&gt;
+    &lt;img src=&#39;heap_sort.png&#39; width=&#39;50%&#39; alt=&#39;Heap Sort&#39;&gt;&lt;br&gt;
+    &lt;p&gt;
+	[Xây dựng heap - Đổi chỗ nút cha và nút lá cuối cùng bên phải - Ngắt nút lá] và lặp lại thao tác này cho tới khi nào mảng chỉ còn duy nhất một phần tử. Phần tử màu xanh lá cây trong hình trên là phần tử đã được sắp xếp
+    &lt;/p&gt;
+&lt;/div&gt;
+&lt;h5 id=&#34;đánh-giá-thuật-toán-5&#34;&gt;Đánh giá thuật toán&lt;/h5&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Độ phức tạp thời gian: Chiều cao của cây là &lt;em&gt;&lt;strong&gt;nlog&lt;sub&gt;2&lt;/sub&gt;n&lt;/strong&gt;&lt;/em&gt; và mất &lt;em&gt;&lt;strong&gt;n&lt;/strong&gt;&lt;/em&gt; lần duyệt cây để có được mảng đã sắp xếp&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Xấu nhất: &lt;em&gt;&lt;strong&gt;O(nlog&lt;sub&gt;2&lt;/sub&gt;n)&lt;/strong&gt;&lt;/em&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Trung bình: &lt;em&gt;&lt;strong&gt;O(nlog&lt;sub&gt;2&lt;/sub&gt;n)&lt;/strong&gt;&lt;/em&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Tốt nhất: &lt;em&gt;&lt;strong&gt;O(nlog&lt;sub&gt;2&lt;/sub&gt;n)&lt;/strong&gt;&lt;/em&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Bộ nhớ sử dụng: &lt;em&gt;&lt;strong&gt;O(1)&lt;/strong&gt;&lt;/em&gt; (không sử dụng mảng phụ)&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;binary-insertion-sort&#34;&gt;Binary Insertion Sort&lt;/h4&gt;
+&lt;h5 id=&#34;ý-tưởng-6&#34;&gt;Ý tưởng&lt;/h5&gt;
+&lt;p style=&#39;text-align: justify;&#39;&gt;
+    Binary Insertion Sort là phiên bản cải tiến của Insertion Sort, nó dùng thuật toán tìm kiếm nhị phân (chặt nhị phân - Binary Search) để tìm vị trí chèn phần tử ở mảng con chưa sắp xếp vào mảng con đã sắp xếp sao cho vẫn giữ nguyên tính chất tăng hoặc giảm.
+&lt;/p&gt;
+&lt;h5 id=&#34;minh-hoạ-thuật-toán-6&#34;&gt;Minh hoạ thuật toán&lt;/h5&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-c++&#34; data-lang=&#34;c++&#34;&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;binarySearch&lt;/span&gt;(&lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt; a, &lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; l, &lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; r, &lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; selected)
+{
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;while&lt;/span&gt; (l &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;&lt;/span&gt; r)
+    {
+        &lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; m &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; (l &lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt; r) &lt;span style=&#34;color:#f92672&#34;&gt;/&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;2&lt;/span&gt;;
+        &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; (a[m] &lt;span style=&#34;color:#f92672&#34;&gt;==&lt;/span&gt; selected) 
+        {
+            &lt;span style=&#34;color:#75715e&#34;&gt;//nếu có nhiều phần tử trùng nhau thì chèn vào sau phần tử trùng cuối cùng =&amp;gt; Đảm bảo tính ổn định
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;            &lt;span style=&#34;color:#66d9ef&#34;&gt;while&lt;/span&gt; (a[&lt;span style=&#34;color:#f92672&#34;&gt;++&lt;/span&gt;m] &lt;span style=&#34;color:#f92672&#34;&gt;==&lt;/span&gt; selected);
+            &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; (m &lt;span style=&#34;color:#f92672&#34;&gt;&amp;gt;&lt;/span&gt; r) &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; r &lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;;
+            &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; m;
+        }
+        &lt;span style=&#34;color:#66d9ef&#34;&gt;else&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; (a[m] &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;&lt;/span&gt; selected) l &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; m &lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;; &lt;span style=&#34;color:#75715e&#34;&gt;//nếu a[m] nhỏ hơn phần tử đã chọn thì vị trí chèn nằm bên phải m
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;        &lt;span style=&#34;color:#66d9ef&#34;&gt;else&lt;/span&gt; r &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; m &lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;; &lt;span style=&#34;color:#75715e&#34;&gt;//ngược lại thì vị trí chèn nằm bên trái m
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;    }
+    &lt;span style=&#34;color:#75715e&#34;&gt;//nếu không có phần tử nào trong mảng con đã sắp xếp bằng với phần tử đã chọn thì xét tại a[l], nếu a[l] lớn hơn thì chèn vào trước a[l]
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; (a[l] &lt;span style=&#34;color:#f92672&#34;&gt;&amp;gt;&lt;/span&gt; selected) &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; l;
+    &lt;span style=&#34;color:#75715e&#34;&gt;//ngược lại thì chèn vào sau a[l]
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; l&lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;;
+}
+&lt;span style=&#34;color:#66d9ef&#34;&gt;void&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;binaryInsertionSort&lt;/span&gt;(&lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt; a, &lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; n)
+{
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; (&lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; i &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;; i &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;&lt;/span&gt; n; i&lt;span style=&#34;color:#f92672&#34;&gt;++&lt;/span&gt;)
+    {
+        &lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; selected &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; a[i];
+        &lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; j &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; i &lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;;
+        &lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; found &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; binarySearch(a, &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;, j, selected);
+        &lt;span style=&#34;color:#75715e&#34;&gt;//dời các phần tử sau vị trí đã tìm sang bên phải 1 đơn vị để chừa chỗ chèn giá trị
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;        &lt;span style=&#34;color:#66d9ef&#34;&gt;while&lt;/span&gt; (j &lt;span style=&#34;color:#f92672&#34;&gt;&amp;gt;=&lt;/span&gt; found)
+        {
+            a[j &lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;] &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; a[j];
+            j&lt;span style=&#34;color:#f92672&#34;&gt;--&lt;/span&gt;;
+        }
+        &lt;span style=&#34;color:#75715e&#34;&gt;//chèn vào vị trí đã tìm
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;        a[found] &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; selected;
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p style=&#39;text-align: center;&#39;&gt;
+    Hình ảnh trực quan minh hoạ cho sự dịch chuyển của các phần tử trong mảng tương tự như Hình 2 (phần Insertion Sort)
+&lt;/p&gt;
+&lt;h5 id=&#34;đánh-giá-thuật-toán-6&#34;&gt;Đánh giá thuật toán&lt;/h5&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Độ phức tạp thời gian:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Xấu nhất: &lt;em&gt;&lt;strong&gt;O(n&lt;sup&gt;2&lt;/sup&gt;)&lt;/strong&gt;&lt;/em&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Trung bình: &lt;em&gt;&lt;strong&gt;O(n&lt;sup&gt;2&lt;/sup&gt;)&lt;/strong&gt;&lt;/em&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Tốt nhất: &lt;em&gt;&lt;strong&gt;O(nlog&lt;sub&gt;2&lt;/sub&gt;n)&lt;/strong&gt;&lt;/em&gt; - trong trường hợp mảng đã sắp xếp sẵn, mất &lt;em&gt;&lt;strong&gt;log&lt;sub&gt;2&lt;/sub&gt;n&lt;/strong&gt;&lt;/em&gt; lần chặt nhị phân và &lt;em&gt;&lt;strong&gt;n&lt;/strong&gt;&lt;/em&gt; vòng lặp duyệt mảng&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Bộ nhớ sử dụng: &lt;em&gt;&lt;strong&gt;O(1)&lt;/strong&gt;&lt;/em&gt; (không sử dụng mảng phụ)&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;thực-nghiệm&#34;&gt;Thực nghiệm&lt;/h3&gt;
+&lt;h4 id=&#34;dữ-liệu-có-thứ-tự-ngẫu-nhiên&#34;&gt;Dữ liệu có thứ tự ngẫu nhiên&lt;/h4&gt;
+&lt;div style=&#39;text-align: center;&#39;&gt;
+    &lt;img src=&#39;randomized.png&#39; alt=&#39;Biểu đồ so sánh thời gian với dữ liệu ngẫu nhiên&#39;&gt;&lt;br&gt;
+    &lt;p&gt;
+	Biểu đồ thời gian chạy của các thuật toán sắp xếp với dữ liệu thứ tự ngẫu nhiên
+    &lt;/p&gt;
+&lt;/div&gt;
+&lt;h5 id=&#34;nhận-xét&#34;&gt;Nhận xét&lt;/h5&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Các thuật toán Merge Sort, Quick Sort, Heap Sort đều chạy rất nhanh (dưới 0.3s ở bài test có dữ liệu lớn nhất), trong đó Quick Sort nhanh hơn ở hầu hết các bài test.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Thuật toán Bubble Sort có thời gian chạy lâu nhất, gấp nhiều lần các thuật toán khác. Bubble Sort chậm hơn tất cả các thuật toán khác trong nhóm thuật toán sắp xếp chậm mặc dù được đánh giá cùng với độ phức tạp thời gian &lt;em&gt;&lt;strong&gt;O(n&lt;sup&gt;2&lt;/sup&gt;)&lt;/strong&gt;&lt;/em&gt; do phải thực hiện phép hoán vị và duyệt lại mảng quá nhiều lần (dù đã cải tiến bằng cách thoát vòng lặp duyệt mảng nếu phát hiện mảng đã sắp xếp).&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Insertion Sort và Binary Insertion Sort mất thời gian dưới 50s ở bài test có dữ liệu lớn nhất, trong đó Binary Insertion Sort nhanh hơn Insertion Sort khoảng 30% do cải tiến việc tìm vị trí bằng chặt nhị phân.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;dữ-liệu-đã-được-sắp-xếp&#34;&gt;Dữ liệu đã được sắp xếp&lt;/h4&gt;
+&lt;div style=&#39;text-align: center;&#39;&gt;
+    &lt;img src=&#39;sorted.png&#39; alt=&#39;Biểu đồ so sánh thời gian với dữ liệu đã sắp xếp&#39;&gt;&lt;br&gt;
+    &lt;p&gt;
+	Biểu đồ thời gian chạy của các thuật toán sắp xếp với dữ liệu đã được sắp xếp
+    &lt;/p&gt;
+&lt;/div&gt;
+&lt;h5 id=&#34;nhận-xét-1&#34;&gt;Nhận xét&lt;/h5&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Tất cả các thuật toán đều chạy rất nhanh (dưới 0.3s ở bài test có dữ liệu lớn nhất) với mảng đã được sắp xếp sẵn, trừ Selection Sort do cách tìm kiếm phần tử nhỏ nhất theo phương pháp tìm kiếm tuần tự nên phải duyệt lại mảng rất nhiều lần.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Insertion Sort chạy nhanh hơn hẳn so với khi sắp xếp mảng ngẫu nhiên do việc tìm vị trí bắt đầu từ ngay trước điểm đã chọn để chèn và vị trí cần chèn chính là chỗ cũ nên thời gian tìm vị trí và dời các phần tử là &lt;em&gt;&lt;strong&gt;O(1)&lt;/strong&gt;&lt;/em&gt;, cộng thêm duyệt mảng mất &lt;em&gt;&lt;strong&gt;O(n)&lt;/strong&gt;&lt;/em&gt; nên tổng độ phức tạp thời gian của Insertion Sort ở bài test này chỉ là &lt;em&gt;&lt;strong&gt;O(n)&lt;/strong&gt;&lt;/em&gt;.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Binary Insertion Sort ở bài test này chậm hơn so với Insertion Sort một chút, do phương pháp chặt nhị phân nên thời gian tìm kiếm vị trí mất &lt;em&gt;&lt;strong&gt;O(log&lt;sub&gt;2&lt;/sub&gt;n)&lt;/strong&gt;&lt;/em&gt; thay vì &lt;em&gt;&lt;strong&gt;O(1)&lt;/strong&gt;&lt;/em&gt;, thời gian dời các phần tử là &lt;em&gt;&lt;strong&gt;O(1)&lt;/strong&gt;&lt;/em&gt; do vị trí chèn chính là chỗ cũ, vậy nên tổng độ phức tạp thời gian của Binary Insertion Sort ở bài test này là &lt;em&gt;&lt;strong&gt;O(nlog&lt;sub&gt;2&lt;/sub&gt;n)&lt;/strong&gt;&lt;/em&gt;.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Bubble Sort chạy nhanh hơn hẳn so với mảng ngẫu nhiên do đã cải tiến, nếu duyệt qua mảng mà không có bất kì phép hoán vị nào tức là mảng đã sắp xếp và không cần sắp xếp nữa, ở bài test này độ phức tạp là &lt;em&gt;&lt;strong&gt;O(n)&lt;/strong&gt;&lt;/em&gt;.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Các thuật toán Quick Sort, Merge Sort, Heap Sort vẫn rất nhanh, chênh lệch không lớn so với mảng ngẫu nhiên.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;dữ-liệu-đã-sắp-xếp-ngược&#34;&gt;Dữ liệu đã sắp xếp ngược&lt;/h4&gt;
+&lt;div style=&#39;text-align: center;&#39;&gt;
+    &lt;img src=&#39;reversed.png&#39; alt=&#39;Biểu đồ so sánh thời gian với dữ liệu đã sắp xếp ngược&#39;&gt;&lt;br&gt;
+    &lt;p&gt;
+	Biểu đồ thời gian chạy của các thuật toán sắp xếp với dữ liệu đã sắp xếp ngược
+    &lt;/p&gt;
+&lt;/div&gt;
+&lt;h5 id=&#34;nhận-xét-2&#34;&gt;Nhận xét&lt;/h5&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Bubble Sort thể hiện rất tệ ở mảng sắp xếp ngược, do phải thực hiện &lt;em&gt;&lt;strong&gt;O(n)&lt;/strong&gt;&lt;/em&gt; phép hoán vị mới có thể làm phần tử lớn nhất “nổi bọt” đến cuối mảng&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Insertion Sort và Binary Insertion Sort sắp xếp lâu gấp đôi so với mảng ngẫu nhiên, do với mỗi lần chèn phần tử đều phải dời toàn bộ mảng con đã sắp xếp để chèn phần tử vào (do mảng xếp ngược có phần tử đứng sau luôn bé hơn phần tử đứng trước). Binary Insertion Sort vẫn nhanh hơn Insertion Sort khoảng 30%&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Selection Sort có thời gian chạy không thay đổi quá nhiều so với mảng ngẫu nhiên và mảng đã sắp xếp, do thuật toán này luôn phải duyệt lại mảng nhiều lần để tìm kiếm tuần tự phần tử min trong mảng chưa sắp xếp&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Merge Sort, Quick Sort và Heap Sort vẫn rất nhanh (dưới 0.3s ở bài test có dữ liệu lớn nhất) và không chênh lệch nhau nhiều, Quick Sort nhanh hơn một chút so với hai thuật toán còn lại&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;dữ-liệu-gần-như-đã-sắp-xếp&#34;&gt;Dữ liệu gần như đã sắp xếp&lt;/h4&gt;
+&lt;div style=&#39;text-align: center;&#39;&gt;
+    &lt;img src=&#39;nearlysorted.png&#39; alt=&#39;Biểu đồ so sánh thời gian với dữ liệu gần như đã sắp xếp&#39;&gt;&lt;br&gt;
+    &lt;p&gt;
+	Biểu đồ thời gian chạy của các thuật toán sắp xếp với dữ liệu gần như đã sắp xếp
+    &lt;/p&gt;
+&lt;/div&gt;
+&lt;h5 id=&#34;nhận-xét-3&#34;&gt;Nhận xét&lt;/h5&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Selection Sort vẫn giữ thời gian chạy giống như các mảng với thứ tự sắp xếp ngẫu nhiên, đã sắp xếp và sắp xếp ngược do tính chất của thuật toán.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Bubble Sort với mảng gần như sắp xếp chạy nhanh hơn Selection Sort và nhanh hơn khi sắp xếp các mảng ngẫu nhiên và sắp xếp ngược do chỉ có một vài phần tử bị xáo trộn, nên chỉ phải duyệt lại mảng &lt;em&gt;&lt;strong&gt;k&lt;/strong&gt;&lt;/em&gt; lần (với &lt;em&gt;&lt;strong&gt;k&lt;/strong&gt;&lt;/em&gt; là số phần tử nằm sai vị trí) và số lần hoán vị với mỗi vòng lặp nhỏ hơn hoặc bằng &lt;em&gt;&lt;strong&gt;n&lt;/strong&gt;&lt;/em&gt; (tuỳ thuộc vị trí của phần tử bị xáo trộn).&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Các thuật toán còn lại đều sắp xếp rất nhanh (dưới 0.3s với bài test có dữ liệu lớn nhất). Trong đó Insertion Sort và Binary Insertion Sort là nhanh nhất do chỉ phải chèn &lt;em&gt;&lt;strong&gt;k&lt;/strong&gt;&lt;/em&gt; phần tử bị xáo trộn vào mảng đã sắp xếp.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Merge Sort, Quick Sort, Heap Sort sắp xếp mảng gần như đã sắp xếp với thời gian gần như tương tự các sắp xếp mảng khác.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;đánh-giá-tổng-quan&#34;&gt;Đánh giá tổng quan&lt;/h4&gt;
+&lt;h5 id=&#34;đánh-giá&#34;&gt;Đánh giá&lt;/h5&gt;
+&lt;ul&gt;
+&lt;li&gt;Thuật toán Quick Sort nhanh hơn ở hầu hết các trường hợp (trừ mảng đã sắp xếp do đây là trường hợp đặc biệt của Bubble Sort, Insertion Sort và Binary Insertion Sort nên các thuật toán này chạy nhanh hơn).&lt;/li&gt;
+&lt;li&gt;Bubble Sort chậm nhất ở hầu hết các trường hợp (trừ trường hợp mảng đã sắp xếp).&lt;/li&gt;
+&lt;li&gt;Insertion Sort, Binary Insertion Sort, Bubble Sort sắp xếp chậm ở các mảng ngẫu nhiên, mảng xếp ngược. Nhưng lại nhanh hơn rõ rệt ở mảng đã sắp xếp hoặc gần như sắp xếp.&lt;/li&gt;
+&lt;li&gt;Heap Sort và Merge Sort chậm hơn Quick Sort một chút nhưng lại ổn định về thời gian hơn QuickSort (không có trường hợp xấu &lt;em&gt;&lt;strong&gt;O(n&lt;sup&gt;2&lt;/sup&gt;)&lt;/strong&gt;&lt;/em&gt;.&lt;/li&gt;
+&lt;li&gt;Merge Sort có nhược điểm là tốn bộ nhớ tạm để chứa các mảng con cần trộn.&lt;/li&gt;
+&lt;li&gt;Selection Sort chậm đều nhau ở tất cả các thứ tự mảng do phải duyệt toàn bộ mảng con chưa sắp xếp để tìm phần tử nhỏ nhất, không có khác biệt trong tất cả các thứ tự mảng test.&lt;/li&gt;
+&lt;li&gt;Tuỳ vào cách chọn pivot quyết định QuickSort nhanh hay chậm, ở đây sử dụng Randomized QuickSort nên không bị trường hợp xấu ở thứ tự mảng xếp ngược giống như khi chọn pivot ở cuối mảng.&lt;/li&gt;
+&lt;li&gt;Các thuật toán Bubble Sort, Insertion Sort, Selection Sort, Binary Insertion Sort hiệu suất thấp nhưng cài đặt dễ dàng hơn so với Merge Sort, Quick Sort và Heap Sort.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h5 id=&#34;phân-nhóm-thuật-toán-theo-độ-ổn-định&#34;&gt;Phân nhóm thuật toán theo độ ổn định&lt;/h5&gt;
+&lt;h6 id=&#34;nhóm-thuật-toán-sắp-xếp-ổn-định-cần-cài-đặt-cẩn-thận-để-đảm-bảo-tính-ổn-định---chi-tiết-trong-phần-mô-tả-thuật-toán&#34;&gt;Nhóm thuật toán sắp xếp ổn định (cần cài đặt cẩn thận để đảm bảo tính ổn định - chi tiết trong phần mô tả thuật toán)&lt;/h6&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Merge Sort&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Binary Insertion Sort&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Insertion Sort&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Bubble Sort&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Selection Sort&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h6 id=&#34;nhóm-thuật-toán-sắp-xếp-không-ổn-định&#34;&gt;Nhóm thuật toán sắp xếp không ổn định&lt;/h6&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Heap Sort&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Quick Sort&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+        </item>
+        
+    </channel>
+</rss>

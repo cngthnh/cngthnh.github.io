@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Tags on cngthnh - tech for noobs</title>
+    <link>https://cngthnh.github.io/tags/</link>
+    <description>Recent content in Tags on cngthnh - tech for noobs</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>vi-vn</language>
+    <lastBuildDate>Sun, 27 Dec 2020 23:55:10 +0700</lastBuildDate><atom:link href="https://cngthnh.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Algorithms</title>
+      <link>https://cngthnh.github.io/tags/algorithms/</link>
+      <pubDate>Sun, 27 Dec 2020 23:55:10 +0700</pubDate>
+      
+      <guid>https://cngthnh.github.io/tags/algorithms/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Sort</title>
+      <link>https://cngthnh.github.io/tags/sort/</link>
+      <pubDate>Sun, 27 Dec 2020 23:55:10 +0700</pubDate>
+      
+      <guid>https://cngthnh.github.io/tags/sort/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Tech</title>
+      <link>https://cngthnh.github.io/tags/tech/</link>
+      <pubDate>Sun, 27 Dec 2020 23:55:10 +0700</pubDate>
+      
+      <guid>https://cngthnh.github.io/tags/tech/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>
