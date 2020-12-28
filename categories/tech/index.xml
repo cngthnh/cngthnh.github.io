@@ -13,8 +13,7 @@
       <pubDate>Mon, 28 Dec 2020 23:05:15 +0700</pubDate>
       
       <guid>https://cngthnh.github.io/p/l%E1%BA%ADp-tr%C3%ACnh-socket-web-server-%C4%91%C6%A1n-gi%E1%BA%A3n/</guid>
-      <description>MÔ HÌNH HOẠT ĐỘNG 
-Về phía Client Máy khách gửi một yêu cầu đến máy chủ một gói dữ liệu gồm phương thức mà máy khách muốn yêu cầu đến máy chủ, URI (đường dẫn đến tài nguyên) và phiên bản của giao thức HTTP. Tiếp theo đó là các headers (thông điệp MIME) chứa các thông tin về yêu cầu của máy khách, thông tin về máy khách…</description>
+      <description>MÔ HÌNH HOẠT ĐỘNG  Về phía Client Máy khách gửi một yêu cầu đến máy chủ một gói dữ liệu gồm phương thức mà máy khách muốn yêu cầu đến máy chủ, URI (đường dẫn đến tài nguyên) và phiên bản của giao thức HTTP. Tiếp theo đó là các headers (thông điệp MIME) chứa các thông tin về yêu cầu của máy khách, thông tin về máy khách…</description>
     </item>
     
     <item>

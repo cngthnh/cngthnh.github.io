@@ -13,7 +13,7 @@
         
         <guid>https://cngthnh.github.io/p/l%E1%BA%ADp-tr%C3%ACnh-socket-web-server-%C4%91%C6%A1n-gi%E1%BA%A3n/</guid>
         <description>&lt;img src="https://cngthnh.github.io/p/l%E1%BA%ADp-tr%C3%ACnh-socket-web-server-%C4%91%C6%A1n-gi%E1%BA%A3n/nullSERVER.png" alt="Featured image of post Lập trình Socket: Web Server đơn giản" /&gt;&lt;h2 id=&#34;mô-hình-hoạt-động&#34;&gt;MÔ HÌNH HOẠT ĐỘNG&lt;/h2&gt;
-&lt;p&gt;&lt;img src=&#39;mo-hinh-hoat-dong-http.png&#39;&gt;&lt;/img&gt;&lt;/p&gt;
+&lt;div style=&#39;text-align: center;&#39;&gt;&lt;img src=&#39;mo-hinh-hoat-dong-http.png&#39;&gt;&lt;/img&gt;&lt;/div&gt;
 &lt;h5 id=&#34;về-phía-client&#34;&gt;Về phía Client&lt;/h5&gt;
 &lt;p style=&#39;text-align: justify;&#39;&gt;Máy khách gửi một yêu cầu đến máy chủ một gói dữ liệu gồm phương thức mà
 máy khách muốn yêu cầu đến máy chủ, URI (đường dẫn đến tài nguyên) và
@@ -27,7 +27,7 @@ HTTP, mã trạng thái (status code). Tiếp theo đó là các headers (thông
 Cuối cùng là gửi trả lại cho máy khách nội dung mà máy khách yêu cầu
     (nếu tồn tại).&lt;/p&gt;
 &lt;h3 id=&#34;định-tuyến&#34;&gt;Định tuyến&lt;/h3&gt;
-&lt;p&gt;&lt;img src=&#39;routing-overview.png&#39;&gt;&lt;/img&gt;&lt;/p&gt;
+&lt;div style=&#39;text-align: center;&#39;&gt;&lt;img src=&#39;routing-overview.png&#39;&gt;&lt;/img&gt;&lt;/div&gt;
 &lt;p style=&#39;text-align: justify;&#39;&gt;Khi nhận được một yêu cầu từ máy khách, server sẽ xử lý yêu cầu để xác
 định đường dẫn của tài nguyên mà máy khách muốn truy cập, kiểm tra tài
 nguyên đó có tồn tại và được quyền truy cập hay không. Nếu tài nguyên
@@ -56,7 +56,7 @@ cookie không hợp lệ). Cùng với đó là điều hướng những truy c�
 &lt;h3 id=&#34;xử-lý-thông-điệp&#34;&gt;Xử lý thông điệp&lt;/h3&gt;
 &lt;h4 id=&#34;http-requests&#34;&gt;HTTP Requests&lt;/h4&gt;
 &lt;h5 id=&#34;get-requests&#34;&gt;GET Requests&lt;/h5&gt;
-&lt;p&gt;&lt;img src=&#39;get-request.png&#39;&gt;&lt;/img&gt;&lt;/p&gt;
+&lt;div style=&#39;text-align: center;&#39;&gt;&lt;img src=&#39;get-request.png&#39;&gt;&lt;/img&gt;&lt;/div&gt;
 &lt;p style=&#39;text-align: justify;&#39;&gt;Với các thông điệp yêu cầu, chúng ta cần xác định được phương thức,
 đường dẫn và phiên bản HTTP. Tiếp đó là thông tin của các headers. Trong
 khuôn khổ của đồ án này, chúng ta cần quan tâm nhất đến các headers:
@@ -144,7 +144,7 @@ rất lớn chi phí vận hành của server. Để giải quyết vấn đề 
 server sẽ thực hiện chia tài nguyên kích thước lớn thành các bó tin có
     kích thước nhỏ hơn để gửi cho máy khách theo kiểu truyền tải chunked.&lt;/p&gt;
 &lt;h2 id=&#34;triển-khai-ứng-dụng&#34;&gt;TRIỂN KHAI ỨNG DỤNG&lt;/h2&gt;
-&lt;p&gt;&lt;img src=&#39;routing-diagram-nullSERVER.png&#39;&gt;&lt;/img&gt;&lt;/p&gt;
+&lt;div style=&#39;text-align: center;&#39;&gt;&lt;img src=&#39;routing-diagram-nullSERVER.png&#39;&gt;&lt;/img&gt;&lt;/div&gt;
 &lt;h3 id=&#34;định-tuyến-1&#34;&gt;Định tuyến&lt;/h3&gt;
 &lt;p&gt;&lt;em&gt;Bộ phận định tuyến được triển khai theo sơ đồ như bên trên&lt;/em&gt;&lt;/p&gt;
 &lt;p style=&#39;text-align: justify;&#39;&gt;Bộ mã nguồn frontend của đồ án này được lưu trong thư mục &lt;b&gt;web-source&lt;/b&gt;
