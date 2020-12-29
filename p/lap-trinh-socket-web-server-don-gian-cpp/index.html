@@ -1,18 +1,18 @@
 <!DOCTYPE html>
 <html lang="vi-vn">
     <head><meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='Lập trình Socket: Web Server đơn giản'><title>Lập trình Socket: Web Server đơn giản</title>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='Lập trình Socket: Web Server đơn giản bằng C&#43;&#43;'><title>Lập trình Socket: Web Server đơn giản bằng C&#43;&#43;</title>
 
-<link rel='canonical' href='https://cngthnh.github.io/p/l%E1%BA%ADp-tr%C3%ACnh-socket-web-server-%C4%91%C6%A1n-gi%E1%BA%A3n/'>
+<link rel='canonical' href='https://cngthnh.github.io/p/lap-trinh-socket-web-server-don-gian-cpp/'>
 
-<link rel="stylesheet" href="/scss/style.min.css"><meta property='og:title' content='Lập trình Socket: Web Server đơn giản'>
-<meta property='og:description' content='Lập trình Socket: Web Server đơn giản'>
-<meta property='og:url' content='https://cngthnh.github.io/p/l%E1%BA%ADp-tr%C3%ACnh-socket-web-server-%C4%91%C6%A1n-gi%E1%BA%A3n/'>
+<link rel="stylesheet" href="/scss/style.min.css"><meta property='og:title' content='Lập trình Socket: Web Server đơn giản bằng C&#43;&#43;'>
+<meta property='og:description' content='Lập trình Socket: Web Server đơn giản bằng C&#43;&#43;'>
+<meta property='og:url' content='https://cngthnh.github.io/p/lap-trinh-socket-web-server-don-gian-cpp/'>
 <meta property='og:site_name' content='@cngthnh | tech for noobs'>
-<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='Tech' /><meta property='article:tag' content='Socket' /><meta property='article:tag' content='Server' /><meta property='article:tag' content='HTTP' /><meta property='article:tag' content='C&#43;&#43;' /><meta property='article:published_time' content='2020-12-28T23:05:15&#43;07:00'/><meta property='article:modified_time' content='2020-12-28T23:05:15&#43;07:00'/><meta property='og:image' content='https://cngthnh.github.io/p/l%E1%BA%ADp-tr%C3%ACnh-socket-web-server-%C4%91%C6%A1n-gi%E1%BA%A3n/nullSERVER.png' />
-<meta name="twitter:title" content="Lập trình Socket: Web Server đơn giản">
-<meta name="twitter:description" content="Lập trình Socket: Web Server đơn giản"><meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:image" content='https://cngthnh.github.io/p/l%E1%BA%ADp-tr%C3%ACnh-socket-web-server-%C4%91%C6%A1n-gi%E1%BA%A3n/nullSERVER.png' />
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='Tech' /><meta property='article:tag' content='Socket' /><meta property='article:tag' content='Server' /><meta property='article:tag' content='HTTP' /><meta property='article:tag' content='C&#43;&#43;' /><meta property='article:published_time' content='2020-12-28T23:05:15&#43;07:00'/><meta property='article:modified_time' content='2020-12-28T23:05:15&#43;07:00'/><meta property='og:image' content='https://cngthnh.github.io/p/lap-trinh-socket-web-server-don-gian-cpp/nullSERVER.png' />
+<meta name="twitter:title" content="Lập trình Socket: Web Server đơn giản bằng C&#43;&#43;">
+<meta name="twitter:description" content="Lập trình Socket: Web Server đơn giản bằng C&#43;&#43;"><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='https://cngthnh.github.io/p/lap-trinh-socket-web-server-don-gian-cpp/nullSERVER.png' />
     <link rel="shortcut icon" href="favicon.png" />
 <style>
 		
@@ -31,6 +31,15 @@
 		
 		    document.head.appendChild(customFont);
 		}());
+</script>
+<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'G-VFR9SQNDML', 'auto');
+ga('send', 'pageview');
 </script>
     </head>
     <body class="">
@@ -77,7 +86,7 @@
                 
 
                 
-                    <span class="emoji">🍥</span>
+                    <span class="emoji">👾</span>
                 
             </figure>
         
@@ -204,13 +213,13 @@
     <article class="has-image main-article">
     <header class="article-header">
         <div class="article-image">
-            <a href="/p/l%E1%BA%ADp-tr%C3%ACnh-socket-web-server-%C4%91%C6%A1n-gi%E1%BA%A3n/">
-                <img src="/p/l%E1%BA%ADp-tr%C3%ACnh-socket-web-server-%C4%91%C6%A1n-gi%E1%BA%A3n/nullSERVER_hud5ef50abcd2b6d6a8e726228c1d6e7fb_16531_800x0_resize_box_2.png"
-                        srcset="/p/l%E1%BA%ADp-tr%C3%ACnh-socket-web-server-%C4%91%C6%A1n-gi%E1%BA%A3n/nullSERVER_hud5ef50abcd2b6d6a8e726228c1d6e7fb_16531_800x0_resize_box_2.png 800w, /p/l%E1%BA%ADp-tr%C3%ACnh-socket-web-server-%C4%91%C6%A1n-gi%E1%BA%A3n/nullSERVER_hud5ef50abcd2b6d6a8e726228c1d6e7fb_16531_1600x0_resize_box_2.png 1600w"
+            <a href="/p/lap-trinh-socket-web-server-don-gian-cpp/">
+                <img src="/p/lap-trinh-socket-web-server-don-gian-cpp/nullSERVER_hud5ef50abcd2b6d6a8e726228c1d6e7fb_16531_800x0_resize_box_2.png"
+                        srcset="/p/lap-trinh-socket-web-server-don-gian-cpp/nullSERVER_hud5ef50abcd2b6d6a8e726228c1d6e7fb_16531_800x0_resize_box_2.png 800w, /p/lap-trinh-socket-web-server-don-gian-cpp/nullSERVER_hud5ef50abcd2b6d6a8e726228c1d6e7fb_16531_1600x0_resize_box_2.png 1600w"
                         width="800" 
                         height="550" 
                         loading="lazy"
-                        alt="Featured image of post Lập trình Socket: Web Server đơn giản" />
+                        alt="Featured image of post Lập trình Socket: Web Server đơn giản bằng C&#43;&#43;" />
                 
             </a>
         </div>
@@ -236,12 +245,12 @@
     
 
     <h2 class="article-title">
-        <a href="/p/l%E1%BA%ADp-tr%C3%ACnh-socket-web-server-%C4%91%C6%A1n-gi%E1%BA%A3n/">Lập trình Socket: Web Server đơn giản</a>
+        <a href="/p/lap-trinh-socket-web-server-don-gian-cpp/">Lập trình Socket: Web Server đơn giản bằng C&#43;&#43;</a>
     </h2>
 
     
     <h3 class="article-subtitle">
-        Lập trình Socket: Web Server đơn giản
+        Lập trình Socket: Web Server đơn giản bằng C&#43;&#43;
     </h3>
     <footer class="article-time">
         <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -344,7 +353,7 @@ nếu thông tin đăng nhập khác so với thông tin tài khoản mặc đ�
 <p style='text-align: justify;'>Trả về khi yêu cầu của máy khách được máy chủ đáp ứng thành công. Dữ
 liệu được yêu cầu sẽ trả về kèm theo HTTP Response.
     </p>
-<p style='text-align: justify;'>Ta có thể gửi kèm header **Expires** để quy định ngày hết hạn của tài
+<p style='text-align: justify;'>Ta có thể gửi kèm header <b>Expires</b> để quy định ngày hết hạn của tài
 nguyên này, khi trôi qua ngày hết hạn, client sẽ buộc phải làm mới lại
     dữ liệu.</p>
 <h5 id="status-code-303--see-other">Status Code 303 – See Other</h5>
@@ -407,6 +416,8 @@ có phải thư mục hay không, nếu là thư mục thì trả về file “i
 trong thư mục đó, nếu không có file “index.html” trong thư mục đó hoặc
 đó không phải thư mục và tài nguyên đó cũng không tồn tại thì trả về mã
     lỗi 404 (Not Found) và trả về nội dung “404.html”.</p>
+### Xử lý đa luồng
+<p style='text-align: justify;'>Do mỗi trang web được yêu cầu không chỉ bao gồm 1 request mà bao gồm nhiều request đến tất cả các tài nguyên được nhúng vào trang web mà người dùng yêu cầu. Để đảm bảo tốc độ load trang, ta không thể chờ xử lý xong request này rồi mới xử lý tiếp các request khác. Hơn nữa, do tính chất của server phục vụ cho nhiều máy khách, không thể để một máy khách chờ được phục vụ trong khi đang đáp ứng cho máy khách khác. Chính vì những lý do này mà ta cần xử lý mỗi request ở một thread riêng độc lập với session chính.</p>
 <h3 id="xây-dựng-giao-diện-cho-người-dùng-cuối">Xây dựng giao diện cho người dùng cuối</h3>
 <p style='text-align: justify;'>Thư mục mã nguồn web-source bắt buộc phải nằm cùng đường dẫn với
     file thực thi để máy chủ có thể hoạt động chính xác</p>
@@ -414,7 +425,7 @@ trong thư mục đó, nếu không có file “index.html” trong thư mục �
 tin file và hiển thị lên giao diện cho người dùng cuối như đã trình bày
 trong mục Mô Hình Hoạt Động. Việc triển khai xây dựng giao diện dễ giao
     tiếp với máy chủ được thực hiện như sau:</p>
-<p><strong>Block giữ chỗ:</strong> <em>&lt;//nullSERVER?FILES?//&gt;</em></p>
+**Block giữ chỗ:** *&lt;//nullSERVER?FILES?//&gt;*
 <p style='text-align: justify;'>Máy chủ sẽ tìm block giữ chỗ này, sau đó thay thế block này bằng các
     template đã được xây dựng sẵn như bên dưới.</p>
 <p style='text-align: justify;'><b>Một block thông tin file khi được máy chủ chèn vào HTML có dạng như
@@ -490,15 +501,37 @@ chia tài nguyên cần truy cập thành các bó tin nhỏ, tránh đọc dữ
                 
                     
 <article class="has-image">
-    <a href="/p/thu%E1%BA%ADt-to%C3%A1n-s%E1%BA%AFp-x%E1%BA%BFp/">
+    <a href="/p/web-scraping-cao-du-lieu-tu-mot-trang-web-voi-python/">
         
         
             <div class="article-image">
-                <img src="/p/thu%E1%BA%ADt-to%C3%A1n-s%E1%BA%AFp-x%E1%BA%BFp/sort.85e21b59b0e31ce66e7697afc6d82e71_hu9dd4241d01f2a44c27ea4bac44362aa8_27425_250x150_fill_box_smart1_2.png" 
+                <img src="/p/web-scraping-cao-du-lieu-tu-mot-trang-web-voi-python/web-scraping.ebd82fb4c5ac2c38ceef0241e35d9d56_hu0415db244d56b636a3f6430cd0e86e7e_11218_250x150_fill_box_smart1_2.png" 
                         width="250" 
                         height="150" 
                         loading="lazy" 
-                        data-key="" 
+                        data-key="web-scraping-cao-du-lieu-tu-mot-trang-web-voi-python" 
+                        data-hash="md5-69gvtMWsLDjO7wJB412dVg==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Web Scraping: Cào dữ liệu từ một trang web với BeautifulSoup 4 và Python</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="has-image">
+    <a href="/p/thuat-toan-sap-xep/">
+        
+        
+            <div class="article-image">
+                <img src="/p/thuat-toan-sap-xep/sort.85e21b59b0e31ce66e7697afc6d82e71_hu9dd4241d01f2a44c27ea4bac44362aa8_27425_250x150_fill_box_smart1_2.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy" 
+                        data-key="thuat-toan-sap-xep" 
                         data-hash="md5-heIbWbDjHOZudpevxtgucQ==">
                 
             </div>

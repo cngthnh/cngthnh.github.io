@@ -6,13 +6,157 @@
         <description>Recent content on @cngthnh | tech for noobs</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>vi-vn</language>
-        <lastBuildDate>Mon, 28 Dec 2020 23:05:15 +0700</lastBuildDate><atom:link href="https://cngthnh.github.io/index.xml" rel="self" type="application/rss+xml" /><item>
-        <title>Lập trình Socket: Web Server đơn giản</title>
-        <link>https://cngthnh.github.io/p/l%E1%BA%ADp-tr%C3%ACnh-socket-web-server-%C4%91%C6%A1n-gi%E1%BA%A3n/</link>
+        <lastBuildDate>Tue, 29 Dec 2020 18:23:11 +0700</lastBuildDate><atom:link href="https://cngthnh.github.io/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>Web Scraping: Cào dữ liệu từ một trang web với BeautifulSoup 4 và Python</title>
+        <link>https://cngthnh.github.io/p/web-scraping-cao-du-lieu-tu-mot-trang-web-voi-python/</link>
+        <pubDate>Tue, 29 Dec 2020 18:23:11 +0700</pubDate>
+        
+        <guid>https://cngthnh.github.io/p/web-scraping-cao-du-lieu-tu-mot-trang-web-voi-python/</guid>
+        <description>&lt;img src="https://cngthnh.github.io/p/web-scraping-cao-du-lieu-tu-mot-trang-web-voi-python/web-scraping.png" alt="Featured image of post Web Scraping: Cào dữ liệu từ một trang web với BeautifulSoup 4 và Python" /&gt;&lt;h2 id=&#34;scraping-là-gì&#34;&gt;Scraping là gì?&lt;/h2&gt;
+&lt;p style=&#39;text-align: justify;&#39;&gt;Scraping đơn giản là trích xuất thông tin từ một hệ thống, cơ sở dữ liệu hoặc trang web... nào đó. Khác với crawling, scraping không thu thập toàn bộ thông tin mà chỉ thu thập những thông tin phù hợp với mục đích của người lập trình. Trong quá trình scrap, chúng ta vừa cần thu thập dữ liệu, vừa trích xuất dữ liệu (data extraction) để loại bỏ các thành phần không cần thiết và chỉ để lại dữ liệu đã làm sạch phù hợp với mục đích.&lt;/p&gt;
+&lt;h2 id=&#34;trước-khi-bắt-đầu-scrap&#34;&gt;Trước khi bắt đầu scrap&lt;/h2&gt;
+&lt;p style=&#39;text-align: justify;&#39;&gt;Chúng ta cần quan tâm trang web có bật cơ chế chặn bot hay không. Nếu có chúng ta cần có các biện pháp đối phó đối với từng cơ chế phát hiện:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Quá nhiều request từ cùng một IP =&amp;gt; sử dụng các IP rotator cho mỗi request (Ex: StormProxies&amp;hellip;)&lt;/li&gt;
+&lt;li&gt;Phát hiện không hỗ trợ JS =&amp;gt; sử dụng các headless browser (trình duyệt không có giao diện người dùng) như Selenium, Puppeteer&amp;hellip;&lt;/li&gt;
+&lt;li&gt;Cloudflare, sử dụng cookie, captcha để chặn bot: cái này mình chịu :&amp;lt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;bắt-đầu-thôi&#34;&gt;Bắt đầu thôi&lt;/h2&gt;
+&lt;p style=&#39;text-align: justify;&#39;&gt;Để demo, mình sẽ scrap dữ liệu từ trang web tra cứu điểm thi của báo điện tử 24h. Có thể dùng các công cụ như Jupyter Notebook hoặc Google Colab để chạy demo này.&lt;/p&gt;
+&lt;p style=&#39;text-align: justify;&#39;&gt;Trong demo này mình sẽ cần import các thư viện cần thiết là &lt;b&gt;pandas, requests, bs4, numpy&lt;/b&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span style=&#34;color:#f92672&#34;&gt;import&lt;/span&gt; requests
+&lt;span style=&#34;color:#f92672&#34;&gt;import&lt;/span&gt; pandas
+&lt;span style=&#34;color:#f92672&#34;&gt;import&lt;/span&gt; bs4
+&lt;span style=&#34;color:#f92672&#34;&gt;import&lt;/span&gt; numpy &lt;span style=&#34;color:#f92672&#34;&gt;as&lt;/span&gt; np
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p style=&#39;text-align: justify;&#39;&gt;Sử dụng công cụ DevTools của Chromium (nhấn nút F12). Nhận thấy thông tin ta cần scrap nằm ở tab 	&lt;b&gt;&amp;lt;tr&amp;gt;&lt;/b&gt; thứ 3, ta sẽ parse HTML ở tab này để lấy ra điểm ở các tab 	&lt;b&gt;&amp;lt;td&amp;gt;&lt;/b&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#39;devtools-tr-tab.png&#39;&gt;&lt;/img&gt;&lt;/p&gt;
+&lt;p style=&#39;text-align: justify;&#39;&gt;Ở đây mình sẽ ghi kết quả xuống file JSON để tiện dùng sau này. Thư viện pandas cho phép ghi dataframe xuống ở định dạng JSON hoặc CSV cực kì tiện lợi.&lt;/p&gt;
+&lt;h5 id=&#34;source-code&#34;&gt;Source Code:&lt;/h5&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;url &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;http://diemthi.24h.com.vn/?v_page=1&amp;amp;v_cum_thi=00&amp;amp;v_sbd=&amp;#39;&lt;/span&gt;
+&lt;span style=&#34;color:#66d9ef&#34;&gt;def&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;getPageContent&lt;/span&gt;(url, id):
+  page &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; requests&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;get(url&lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt;id)
+  &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; bs4&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;BeautifulSoup(page&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;text,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;html.parser&amp;#34;&lt;/span&gt;)
+&lt;span style=&#34;color:#66d9ef&#34;&gt;def&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;fieldCleaner&lt;/span&gt;(field):
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; j &lt;span style=&#34;color:#f92672&#34;&gt;in&lt;/span&gt; range(len(field)):
+        &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; ((field[j]&lt;span style=&#34;color:#f92672&#34;&gt;!=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;\r&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;&lt;/span&gt;)&lt;span style=&#34;color:#f92672&#34;&gt;&amp;amp;&lt;/span&gt;(field[j]&lt;span style=&#34;color:#f92672&#34;&gt;!=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;\n&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;&lt;/span&gt;)&lt;span style=&#34;color:#f92672&#34;&gt;&amp;amp;&lt;/span&gt;(field[j]&lt;span style=&#34;color:#f92672&#34;&gt;!=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39; &amp;#39;&lt;/span&gt;)):
+            field&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;(field)[j:]
+            &lt;span style=&#34;color:#66d9ef&#34;&gt;break&lt;/span&gt;
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; j &lt;span style=&#34;color:#f92672&#34;&gt;in&lt;/span&gt; range(len(field)&lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;,&lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;,&lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;):
+        &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; ((field[j]&lt;span style=&#34;color:#f92672&#34;&gt;!=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;\r&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;&lt;/span&gt;)&lt;span style=&#34;color:#f92672&#34;&gt;&amp;amp;&lt;/span&gt;(field[j]&lt;span style=&#34;color:#f92672&#34;&gt;!=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;\n&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;&lt;/span&gt;)&lt;span style=&#34;color:#f92672&#34;&gt;&amp;amp;&lt;/span&gt;(field[j]&lt;span style=&#34;color:#f92672&#34;&gt;!=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39; &amp;#39;&lt;/span&gt;)):
+            field&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;(field)[:j&lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;]
+            &lt;span style=&#34;color:#66d9ef&#34;&gt;break&lt;/span&gt;
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt;(field)
+&lt;span style=&#34;color:#66d9ef&#34;&gt;def&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;removeDup&lt;/span&gt;(field):
+    field &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; str(field)
+    j&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;while&lt;/span&gt; (j&lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;&lt;/span&gt;len(field)):
+        &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; (field[j]&lt;span style=&#34;color:#f92672&#34;&gt;==&lt;/span&gt;field[j&lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;]):
+            field &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; field[:(j&lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;)]&lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt;field[j:]
+            j&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;j&lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;
+        j&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;j&lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt;(field)
+
+id &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; []
+birthday &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; []
+math &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; []
+literature &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; []
+fLang &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; []
+phys &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; []
+chem &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; []
+bio &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; []
+his &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; []
+geo &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; []
+civ &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; []
+note &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; []
+khxh &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; []
+khtn &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; []
+student_num&lt;span style=&#34;color:#f92672&#34;&gt;=-&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;
+&lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; sbd &lt;span style=&#34;color:#f92672&#34;&gt;in&lt;/span&gt; range (&lt;span style=&#34;color:#ae81ff&#34;&gt;1000001&lt;/span&gt;,&lt;span style=&#34;color:#ae81ff&#34;&gt;1100000&lt;/span&gt;):
+    idstr &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;{0:08d}&amp;#39;&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;format(sbd)
+    content &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; getPageContent(url, idstr)
+    tr &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; content&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;find_all(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;tr&amp;#39;&lt;/span&gt;)
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; (len(tr)&lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;3&lt;/span&gt;): &lt;span style=&#34;color:#66d9ef&#34;&gt;continue&lt;/span&gt;
+    student_num &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; student_num&lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;
+    main &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; bs4&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;BeautifulSoup(str(tr[&lt;span style=&#34;color:#ae81ff&#34;&gt;2&lt;/span&gt;]),&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;html.parser&amp;#34;&lt;/span&gt;)
+    mainFields &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; main&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;find_all(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;td&amp;#39;&lt;/span&gt;)
+    mainFields &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; [bs4&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;BeautifulSoup(str(field), &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;html.parser&amp;#34;&lt;/span&gt;) &lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; field &lt;span style=&#34;color:#f92672&#34;&gt;in&lt;/span&gt; mainFields]
+    id&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;append(mainFields[&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;]&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;find(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;td&amp;#39;&lt;/span&gt;)&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;text)
+    id[student_num]&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;fieldCleaner(id[student_num])
+    temp &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; mainFields[&lt;span style=&#34;color:#ae81ff&#34;&gt;2&lt;/span&gt;]&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;find(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;td&amp;#39;&lt;/span&gt;)&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;text
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; (temp&lt;span style=&#34;color:#f92672&#34;&gt;!=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;&amp;#39;&lt;/span&gt;):
+      math&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;append(float(temp))
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;else&lt;/span&gt;:
+      math&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;append(float(np&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;nan))
+    temp &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; mainFields[&lt;span style=&#34;color:#ae81ff&#34;&gt;3&lt;/span&gt;]&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;find(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;td&amp;#39;&lt;/span&gt;)&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;text
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; (temp&lt;span style=&#34;color:#f92672&#34;&gt;!=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;&amp;#39;&lt;/span&gt;):
+      literature&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;append(float(temp))
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;else&lt;/span&gt;:
+      literature&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;append(float(np&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;nan))
+    temp &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; mainFields[&lt;span style=&#34;color:#ae81ff&#34;&gt;4&lt;/span&gt;]&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;find(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;td&amp;#39;&lt;/span&gt;)&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;text
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; (temp&lt;span style=&#34;color:#f92672&#34;&gt;!=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;&amp;#39;&lt;/span&gt;):
+      fLang&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;append(float(temp))
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;else&lt;/span&gt;:
+      fLang&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;append(float(np&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;nan))
+    temp &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; mainFields[&lt;span style=&#34;color:#ae81ff&#34;&gt;5&lt;/span&gt;]&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;find(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;td&amp;#39;&lt;/span&gt;)&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;text
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; (temp&lt;span style=&#34;color:#f92672&#34;&gt;!=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;&amp;#39;&lt;/span&gt;):
+      phys&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;append(float(temp))
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;else&lt;/span&gt;:
+      phys&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;append(float(np&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;nan))
+    temp &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; mainFields[&lt;span style=&#34;color:#ae81ff&#34;&gt;6&lt;/span&gt;]&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;find(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;td&amp;#39;&lt;/span&gt;)&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;text
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; (temp&lt;span style=&#34;color:#f92672&#34;&gt;!=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;&amp;#39;&lt;/span&gt;):
+      chem&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;append(float(temp))
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;else&lt;/span&gt;:
+      chem&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;append(float(np&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;nan))
+    temp &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; mainFields[&lt;span style=&#34;color:#ae81ff&#34;&gt;7&lt;/span&gt;]&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;find(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;td&amp;#39;&lt;/span&gt;)&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;text
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; (temp&lt;span style=&#34;color:#f92672&#34;&gt;!=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;&amp;#39;&lt;/span&gt;):
+      bio&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;append(float(temp))
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;else&lt;/span&gt;:
+      bio&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;append(float(np&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;nan))
+    
+    khtn_avg&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;(phys[student_num]&lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt;chem[student_num]&lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt;bio[student_num])&lt;span style=&#34;color:#f92672&#34;&gt;/&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;3&lt;/span&gt;
+    khtn&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;append(float(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;{:.2f}&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;format(khtn_avg)))
+    
+    temp &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; mainFields[&lt;span style=&#34;color:#ae81ff&#34;&gt;9&lt;/span&gt;]&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;find(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;td&amp;#39;&lt;/span&gt;)&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;text
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; (temp&lt;span style=&#34;color:#f92672&#34;&gt;!=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;&amp;#39;&lt;/span&gt;):
+      his&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;append(float(temp))
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;else&lt;/span&gt;:
+      his&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;append(float(np&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;nan))
+    temp &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; mainFields[&lt;span style=&#34;color:#ae81ff&#34;&gt;10&lt;/span&gt;]&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;find(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;td&amp;#39;&lt;/span&gt;)&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;text
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; (temp&lt;span style=&#34;color:#f92672&#34;&gt;!=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;&amp;#39;&lt;/span&gt;):
+      geo&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;append(float(temp))
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;else&lt;/span&gt;:
+      geo&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;append(float(np&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;nan))
+    temp &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; mainFields[&lt;span style=&#34;color:#ae81ff&#34;&gt;11&lt;/span&gt;]&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;find(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;td&amp;#39;&lt;/span&gt;)&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;text
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; (temp&lt;span style=&#34;color:#f92672&#34;&gt;!=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;&amp;#39;&lt;/span&gt;):
+      civ&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;append(float(temp))
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;else&lt;/span&gt;:
+      civ&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;append(float(np&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;nan))
+    
+    khxh_avg&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;(his[student_num]&lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt;geo[student_num]&lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt;civ[student_num])&lt;span style=&#34;color:#f92672&#34;&gt;/&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;3&lt;/span&gt;
+    khxh&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;append(float(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;{:.2f}&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;format(khxh_avg)))
+    
+df &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; pandas&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;DataFrame({&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;id&amp;#39;&lt;/span&gt;:id,
+                  &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;math&amp;#39;&lt;/span&gt;:math,
+                  &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;literature&amp;#39;&lt;/span&gt;:literature,
+                  &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;foreign lang&amp;#39;&lt;/span&gt;:fLang,
+                  &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;history&amp;#39;&lt;/span&gt;:his,
+                  &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;geo&amp;#39;&lt;/span&gt;:geo,   
+                  &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;civ&amp;#39;&lt;/span&gt;:civ,
+                  &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;SS-Mean&amp;#39;&lt;/span&gt;:khxh,
+                  &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;phys&amp;#39;&lt;/span&gt;:phys,
+                  &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;chem&amp;#39;&lt;/span&gt;:chem,
+                  &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;bio&amp;#39;&lt;/span&gt;:bio,
+                  &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;NS-Mean&amp;#39;&lt;/span&gt;:khtn})
+df&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;to_json(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;data_points.json&amp;#39;&lt;/span&gt;)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description>
+        </item>
+        <item>
+        <title>Lập trình Socket: Web Server đơn giản bằng C&#43;&#43;</title>
+        <link>https://cngthnh.github.io/p/lap-trinh-socket-web-server-don-gian-cpp/</link>
         <pubDate>Mon, 28 Dec 2020 23:05:15 +0700</pubDate>
         
-        <guid>https://cngthnh.github.io/p/l%E1%BA%ADp-tr%C3%ACnh-socket-web-server-%C4%91%C6%A1n-gi%E1%BA%A3n/</guid>
-        <description>&lt;img src="https://cngthnh.github.io/p/l%E1%BA%ADp-tr%C3%ACnh-socket-web-server-%C4%91%C6%A1n-gi%E1%BA%A3n/nullSERVER.png" alt="Featured image of post Lập trình Socket: Web Server đơn giản" /&gt;&lt;h2 id=&#34;mô-hình-hoạt-động&#34;&gt;MÔ HÌNH HOẠT ĐỘNG&lt;/h2&gt;
+        <guid>https://cngthnh.github.io/p/lap-trinh-socket-web-server-don-gian-cpp/</guid>
+        <description>&lt;img src="https://cngthnh.github.io/p/lap-trinh-socket-web-server-don-gian-cpp/nullSERVER.png" alt="Featured image of post Lập trình Socket: Web Server đơn giản bằng C&#43;&#43;" /&gt;&lt;h2 id=&#34;mô-hình-hoạt-động&#34;&gt;MÔ HÌNH HOẠT ĐỘNG&lt;/h2&gt;
 &lt;div style=&#39;text-align: center;&#39;&gt;&lt;img src=&#39;mo-hinh-hoat-dong-http.png&#39;&gt;&lt;/img&gt;&lt;/div&gt;
 &lt;h5 id=&#34;về-phía-client&#34;&gt;Về phía Client&lt;/h5&gt;
 &lt;p style=&#39;text-align: justify;&#39;&gt;Máy khách gửi một yêu cầu đến máy chủ một gói dữ liệu gồm phương thức mà
@@ -99,7 +243,7 @@ nếu thông tin đăng nhập khác so với thông tin tài khoản mặc đ�
 &lt;p style=&#39;text-align: justify;&#39;&gt;Trả về khi yêu cầu của máy khách được máy chủ đáp ứng thành công. Dữ
 liệu được yêu cầu sẽ trả về kèm theo HTTP Response.
     &lt;/p&gt;
-&lt;p style=&#39;text-align: justify;&#39;&gt;Ta có thể gửi kèm header **Expires** để quy định ngày hết hạn của tài
+&lt;p style=&#39;text-align: justify;&#39;&gt;Ta có thể gửi kèm header &lt;b&gt;Expires&lt;/b&gt; để quy định ngày hết hạn của tài
 nguyên này, khi trôi qua ngày hết hạn, client sẽ buộc phải làm mới lại
     dữ liệu.&lt;/p&gt;
 &lt;h5 id=&#34;status-code-303--see-other&#34;&gt;Status Code 303 – See Other&lt;/h5&gt;
@@ -162,6 +306,8 @@ có phải thư mục hay không, nếu là thư mục thì trả về file “i
 trong thư mục đó, nếu không có file “index.html” trong thư mục đó hoặc
 đó không phải thư mục và tài nguyên đó cũng không tồn tại thì trả về mã
     lỗi 404 (Not Found) và trả về nội dung “404.html”.&lt;/p&gt;
+### Xử lý đa luồng
+&lt;p style=&#39;text-align: justify;&#39;&gt;Do mỗi trang web được yêu cầu không chỉ bao gồm 1 request mà bao gồm nhiều request đến tất cả các tài nguyên được nhúng vào trang web mà người dùng yêu cầu. Để đảm bảo tốc độ load trang, ta không thể chờ xử lý xong request này rồi mới xử lý tiếp các request khác. Hơn nữa, do tính chất của server phục vụ cho nhiều máy khách, không thể để một máy khách chờ được phục vụ trong khi đang đáp ứng cho máy khách khác. Chính vì những lý do này mà ta cần xử lý mỗi request ở một thread riêng độc lập với session chính.&lt;/p&gt;
 &lt;h3 id=&#34;xây-dựng-giao-diện-cho-người-dùng-cuối&#34;&gt;Xây dựng giao diện cho người dùng cuối&lt;/h3&gt;
 &lt;p style=&#39;text-align: justify;&#39;&gt;Thư mục mã nguồn web-source bắt buộc phải nằm cùng đường dẫn với
     file thực thi để máy chủ có thể hoạt động chính xác&lt;/p&gt;
@@ -169,7 +315,7 @@ trong thư mục đó, nếu không có file “index.html” trong thư mục �
 tin file và hiển thị lên giao diện cho người dùng cuối như đã trình bày
 trong mục Mô Hình Hoạt Động. Việc triển khai xây dựng giao diện dễ giao
     tiếp với máy chủ được thực hiện như sau:&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Block giữ chỗ:&lt;/strong&gt; &lt;em&gt;&amp;lt;//nullSERVER?FILES?//&amp;gt;&lt;/em&gt;&lt;/p&gt;
+**Block giữ chỗ:** *&amp;lt;//nullSERVER?FILES?//&amp;gt;*
 &lt;p style=&#39;text-align: justify;&#39;&gt;Máy chủ sẽ tìm block giữ chỗ này, sau đó thay thế block này bằng các
     template đã được xây dựng sẵn như bên dưới.&lt;/p&gt;
 &lt;p style=&#39;text-align: justify;&#39;&gt;&lt;b&gt;Một block thông tin file khi được máy chủ chèn vào HTML có dạng như
@@ -202,11 +348,11 @@ chia tài nguyên cần truy cập thành các bó tin nhỏ, tránh đọc dữ
         </item>
         <item>
         <title>Thuật toán sắp xếp</title>
-        <link>https://cngthnh.github.io/p/thu%E1%BA%ADt-to%C3%A1n-s%E1%BA%AFp-x%E1%BA%BFp/</link>
+        <link>https://cngthnh.github.io/p/thuat-toan-sap-xep/</link>
         <pubDate>Sun, 27 Dec 2020 23:55:10 +0700</pubDate>
         
-        <guid>https://cngthnh.github.io/p/thu%E1%BA%ADt-to%C3%A1n-s%E1%BA%AFp-x%E1%BA%BFp/</guid>
-        <description>&lt;img src="https://cngthnh.github.io/p/thu%E1%BA%ADt-to%C3%A1n-s%E1%BA%AFp-x%E1%BA%BFp/sort.png" alt="Featured image of post Thuật toán sắp xếp" /&gt;&lt;h3 id=&#34;trình-bày-thuật-toán&#34;&gt;Trình bày thuật toán&lt;/h3&gt;
+        <guid>https://cngthnh.github.io/p/thuat-toan-sap-xep/</guid>
+        <description>&lt;img src="https://cngthnh.github.io/p/thuat-toan-sap-xep/sort.png" alt="Featured image of post Thuật toán sắp xếp" /&gt;&lt;h3 id=&#34;trình-bày-thuật-toán&#34;&gt;Trình bày thuật toán&lt;/h3&gt;
 &lt;h4 id=&#34;selection-sort&#34;&gt;Selection Sort&lt;/h4&gt;
 &lt;h5 id=&#34;ý-tưởng&#34;&gt;Ý tưởng&lt;/h5&gt;
 &lt;p style=&#39;text-align: justify;&#39;&gt;

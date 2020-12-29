@@ -6,20 +6,29 @@
     <description>Recent content in Categories on @cngthnh | tech for noobs</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>vi-vn</language>
-    <lastBuildDate>Mon, 28 Dec 2020 23:05:15 +0700</lastBuildDate><atom:link href="https://cngthnh.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 29 Dec 2020 18:23:11 +0700</lastBuildDate><atom:link href="https://cngthnh.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>C&#43;&#43;</title>
-      <link>https://cngthnh.github.io/categories/c&#43;&#43;/</link>
-      <pubDate>Mon, 28 Dec 2020 23:05:15 +0700</pubDate>
+      <title>Data</title>
+      <link>https://cngthnh.github.io/categories/data/</link>
+      <pubDate>Tue, 29 Dec 2020 18:23:11 +0700</pubDate>
       
-      <guid>https://cngthnh.github.io/categories/c&#43;&#43;/</guid>
+      <guid>https://cngthnh.github.io/categories/data/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Python</title>
+      <link>https://cngthnh.github.io/categories/python/</link>
+      <pubDate>Tue, 29 Dec 2020 18:23:11 +0700</pubDate>
+      
+      <guid>https://cngthnh.github.io/categories/python/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Tech</title>
       <link>https://cngthnh.github.io/categories/tech/</link>
-      <pubDate>Mon, 28 Dec 2020 23:05:15 +0700</pubDate>
+      <pubDate>Tue, 29 Dec 2020 18:23:11 +0700</pubDate>
       
       <guid>https://cngthnh.github.io/categories/tech/</guid>
       <description></description>
@@ -28,9 +37,18 @@
     <item>
       <title>Tutorial</title>
       <link>https://cngthnh.github.io/categories/tutorial/</link>
-      <pubDate>Mon, 28 Dec 2020 23:05:15 +0700</pubDate>
+      <pubDate>Tue, 29 Dec 2020 18:23:11 +0700</pubDate>
       
       <guid>https://cngthnh.github.io/categories/tutorial/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>C&#43;&#43;</title>
+      <link>https://cngthnh.github.io/categories/c&#43;&#43;/</link>
+      <pubDate>Mon, 28 Dec 2020 23:05:15 +0700</pubDate>
+      
+      <guid>https://cngthnh.github.io/categories/c&#43;&#43;/</guid>
       <description></description>
     </item>
     
