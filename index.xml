@@ -29,7 +29,7 @@
 &lt;span style=&#34;color:#f92672&#34;&gt;import&lt;/span&gt; bs4
 &lt;span style=&#34;color:#f92672&#34;&gt;import&lt;/span&gt; numpy &lt;span style=&#34;color:#f92672&#34;&gt;as&lt;/span&gt; np
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p style=&#39;text-align: justify;&#39;&gt;Sử dụng công cụ DevTools của Chromium (nhấn nút F12). Nhận thấy thông tin ta cần scrap nằm ở tab 	&lt;b&gt;&amp;lt;tr&amp;gt;&lt;/b&gt; thứ 3, ta sẽ parse HTML ở tab này để lấy ra điểm ở các tab 	&lt;b&gt;&amp;lt;td&amp;gt;&lt;/b&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#39;devtools-tr-tab.png&#39;&gt;&lt;/img&gt;&lt;/p&gt;
+&lt;div style=&#39;text-align: justify;&#39;&gt;&lt;img src=&#39;devtools-tr-tab.png&#39;/&gt;&lt;/div&gt;
 &lt;p style=&#39;text-align: justify;&#39;&gt;Ở đây mình sẽ ghi kết quả xuống file JSON để tiện dùng sau này. Thư viện pandas cho phép ghi dataframe xuống ở định dạng JSON hoặc CSV cực kì tiện lợi.&lt;/p&gt;
 &lt;h5 id=&#34;source-code&#34;&gt;Source Code:&lt;/h5&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;url &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;http://diemthi.24h.com.vn/?v_page=1&amp;amp;v_cum_thi=00&amp;amp;v_sbd=&amp;#39;&lt;/span&gt;
@@ -157,7 +157,7 @@ df&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;to_json(&lt;span style
         
         <guid>https://cngthnh.github.io/p/lap-trinh-socket-web-server-don-gian-cpp/</guid>
         <description>&lt;img src="https://cngthnh.github.io/p/lap-trinh-socket-web-server-don-gian-cpp/nullSERVER.png" alt="Featured image of post Lập trình Socket: Web Server đơn giản bằng C&#43;&#43;" /&gt;&lt;h2 id=&#34;mô-hình-hoạt-động&#34;&gt;MÔ HÌNH HOẠT ĐỘNG&lt;/h2&gt;
-&lt;div style=&#39;text-align: center;&#39;&gt;&lt;img src=&#39;mo-hinh-hoat-dong-http.png&#39;&gt;&lt;/img&gt;&lt;/div&gt;
+&lt;div style=&#39;text-align: center;&#39;&gt;&lt;img src=&#39;mo-hinh-hoat-dong-http.png&#39;&gt;&lt;/div&gt;
 &lt;h5 id=&#34;về-phía-client&#34;&gt;Về phía Client&lt;/h5&gt;
 &lt;p style=&#39;text-align: justify;&#39;&gt;Máy khách gửi một yêu cầu đến máy chủ một gói dữ liệu gồm phương thức mà
 máy khách muốn yêu cầu đến máy chủ, URI (đường dẫn đến tài nguyên) và
@@ -171,7 +171,7 @@ HTTP, mã trạng thái (status code). Tiếp theo đó là các headers (thông
 Cuối cùng là gửi trả lại cho máy khách nội dung mà máy khách yêu cầu
     (nếu tồn tại).&lt;/p&gt;
 &lt;h3 id=&#34;định-tuyến&#34;&gt;Định tuyến&lt;/h3&gt;
-&lt;div style=&#39;text-align: center;&#39;&gt;&lt;img src=&#39;routing-overview.png&#39;&gt;&lt;/img&gt;&lt;/div&gt;
+&lt;div style=&#39;text-align: center;&#39;&gt;&lt;img src=&#39;routing-overview.png&#39;&gt;&lt;/div&gt;
 &lt;p style=&#39;text-align: justify;&#39;&gt;Khi nhận được một yêu cầu từ máy khách, server sẽ xử lý yêu cầu để xác
 định đường dẫn của tài nguyên mà máy khách muốn truy cập, kiểm tra tài
 nguyên đó có tồn tại và được quyền truy cập hay không. Nếu tài nguyên
@@ -200,7 +200,7 @@ cookie không hợp lệ). Cùng với đó là điều hướng những truy c�
 &lt;h3 id=&#34;xử-lý-thông-điệp&#34;&gt;Xử lý thông điệp&lt;/h3&gt;
 &lt;h4 id=&#34;http-requests&#34;&gt;HTTP Requests&lt;/h4&gt;
 &lt;h5 id=&#34;get-requests&#34;&gt;GET Requests&lt;/h5&gt;
-&lt;div style=&#39;text-align: center;&#39;&gt;&lt;img src=&#39;get-request.png&#39;&gt;&lt;/img&gt;&lt;/div&gt;
+&lt;div style=&#39;text-align: center;&#39;&gt;&lt;img src=&#39;get-request.png&#39;&gt;&lt;/div&gt;
 &lt;p style=&#39;text-align: justify;&#39;&gt;Với các thông điệp yêu cầu, chúng ta cần xác định được phương thức,
 đường dẫn và phiên bản HTTP. Tiếp đó là thông tin của các headers. Trong
 khuôn khổ của đồ án này, chúng ta cần quan tâm nhất đến các headers:
@@ -246,7 +246,7 @@ liệu được yêu cầu sẽ trả về kèm theo HTTP Response.
 &lt;p style=&#39;text-align: justify;&#39;&gt;Ta có thể gửi kèm header &lt;b&gt;Expires&lt;/b&gt; để quy định ngày hết hạn của tài
 nguyên này, khi trôi qua ngày hết hạn, client sẽ buộc phải làm mới lại
     dữ liệu.&lt;/p&gt;
-&lt;h5 id=&#34;status-code-303--see-other&#34;&gt;Status Code 303 – See Other&lt;/h5&gt;
+##### Status Code 303 – See Other
 &lt;p style=&#39;text-align: justify;&#39;&gt;Trả về khi máy khách đăng nhập thành công vào trang web này, nó giúp
 chuyển hướng đến trang thông tin là info.html bằng cách sử dụng phương
     thức GET.&lt;/p&gt;
@@ -288,7 +288,7 @@ rất lớn chi phí vận hành của server. Để giải quyết vấn đề 
 server sẽ thực hiện chia tài nguyên kích thước lớn thành các bó tin có
     kích thước nhỏ hơn để gửi cho máy khách theo kiểu truyền tải chunked.&lt;/p&gt;
 &lt;h2 id=&#34;triển-khai-ứng-dụng&#34;&gt;TRIỂN KHAI ỨNG DỤNG&lt;/h2&gt;
-&lt;div style=&#39;text-align: center;&#39;&gt;&lt;img src=&#39;routing-diagram-nullSERVER.png&#39;&gt;&lt;/img&gt;&lt;/div&gt;
+&lt;div style=&#39;text-align: center;&#39;&gt;&lt;img src=&#39;routing-diagram-nullSERVER.png&#39;&gt;&lt;/div&gt;
 &lt;h3 id=&#34;định-tuyến-1&#34;&gt;Định tuyến&lt;/h3&gt;
 &lt;p&gt;&lt;em&gt;Bộ phận định tuyến được triển khai theo sơ đồ như bên trên&lt;/em&gt;&lt;/p&gt;
 &lt;p style=&#39;text-align: justify;&#39;&gt;Bộ mã nguồn frontend của đồ án này được lưu trong thư mục &lt;b&gt;web-source&lt;/b&gt;

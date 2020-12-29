@@ -13,7 +13,7 @@
 <meta name="twitter:title" content="Lập trình Socket: Web Server đơn giản bằng C&#43;&#43;">
 <meta name="twitter:description" content="Lập trình Socket: Web Server đơn giản bằng C&#43;&#43;"><meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content='https://cngthnh.github.io/p/lap-trinh-socket-web-server-don-gian-cpp/nullSERVER.png' />
-    <link rel="shortcut icon" href="favicon.png" />
+    <link rel="shortcut icon" href="/favicon.png" />
 <style>
 		
     :root {
@@ -267,7 +267,7 @@ ga('send', 'pageview');
 
     <section class="article-content">
     <h2 id="mô-hình-hoạt-động">MÔ HÌNH HOẠT ĐỘNG</h2>
-<div style='text-align: center;'><img src='mo-hinh-hoat-dong-http.png'></img></div>
+<div style='text-align: center;'><img src='mo-hinh-hoat-dong-http.png'></div>
 <h5 id="về-phía-client">Về phía Client</h5>
 <p style='text-align: justify;'>Máy khách gửi một yêu cầu đến máy chủ một gói dữ liệu gồm phương thức mà
 máy khách muốn yêu cầu đến máy chủ, URI (đường dẫn đến tài nguyên) và
@@ -281,7 +281,7 @@ HTTP, mã trạng thái (status code). Tiếp theo đó là các headers (thông
 Cuối cùng là gửi trả lại cho máy khách nội dung mà máy khách yêu cầu
     (nếu tồn tại).</p>
 <h3 id="định-tuyến">Định tuyến</h3>
-<div style='text-align: center;'><img src='routing-overview.png'></img></div>
+<div style='text-align: center;'><img src='routing-overview.png'></div>
 <p style='text-align: justify;'>Khi nhận được một yêu cầu từ máy khách, server sẽ xử lý yêu cầu để xác
 định đường dẫn của tài nguyên mà máy khách muốn truy cập, kiểm tra tài
 nguyên đó có tồn tại và được quyền truy cập hay không. Nếu tài nguyên
@@ -310,7 +310,7 @@ cookie không hợp lệ). Cùng với đó là điều hướng những truy c�
 <h3 id="xử-lý-thông-điệp">Xử lý thông điệp</h3>
 <h4 id="http-requests">HTTP Requests</h4>
 <h5 id="get-requests">GET Requests</h5>
-<div style='text-align: center;'><img src='get-request.png'></img></div>
+<div style='text-align: center;'><img src='get-request.png'></div>
 <p style='text-align: justify;'>Với các thông điệp yêu cầu, chúng ta cần xác định được phương thức,
 đường dẫn và phiên bản HTTP. Tiếp đó là thông tin của các headers. Trong
 khuôn khổ của đồ án này, chúng ta cần quan tâm nhất đến các headers:
@@ -356,7 +356,7 @@ liệu được yêu cầu sẽ trả về kèm theo HTTP Response.
 <p style='text-align: justify;'>Ta có thể gửi kèm header <b>Expires</b> để quy định ngày hết hạn của tài
 nguyên này, khi trôi qua ngày hết hạn, client sẽ buộc phải làm mới lại
     dữ liệu.</p>
-<h5 id="status-code-303--see-other">Status Code 303 – See Other</h5>
+##### Status Code 303 – See Other
 <p style='text-align: justify;'>Trả về khi máy khách đăng nhập thành công vào trang web này, nó giúp
 chuyển hướng đến trang thông tin là info.html bằng cách sử dụng phương
     thức GET.</p>
@@ -398,7 +398,7 @@ rất lớn chi phí vận hành của server. Để giải quyết vấn đề 
 server sẽ thực hiện chia tài nguyên kích thước lớn thành các bó tin có
     kích thước nhỏ hơn để gửi cho máy khách theo kiểu truyền tải chunked.</p>
 <h2 id="triển-khai-ứng-dụng">TRIỂN KHAI ỨNG DỤNG</h2>
-<div style='text-align: center;'><img src='routing-diagram-nullSERVER.png'></img></div>
+<div style='text-align: center;'><img src='routing-diagram-nullSERVER.png'></div>
 <h3 id="định-tuyến-1">Định tuyến</h3>
 <p><em>Bộ phận định tuyến được triển khai theo sơ đồ như bên trên</em></p>
 <p style='text-align: justify;'>Bộ mã nguồn frontend của đồ án này được lưu trong thư mục <b>web-source</b>
