@@ -65,7 +65,7 @@ export class AppComponent {
 
   private touchStartY = 0;
 
-  transformStyle = computed(() => `translateY(-${this.currentIndex() * 100}vh)`);
+  transformStyle = computed(() => `translate3d(0, -${this.currentIndex() * 100}dvh, 0)`);
 
   constructor(private http: HttpClient) {
 

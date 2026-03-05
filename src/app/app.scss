@@ -365,6 +365,7 @@
     transition: transform 1s cubic-bezier(0.645, 0.045, 0.355, 1);
     will-change: transform;
     color: #fff;
+    transform-origin: top center;
 }
 
 .left-section {
