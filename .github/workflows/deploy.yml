@@ -6,6 +6,8 @@ on:
 
 permissions:
   contents: write
+  pages: write
+  id-token: write
 
 jobs:
   build-and-deploy:
@@ -36,7 +38,6 @@ jobs:
         with:
           path: ./dist/portfolio-app/browser
 
-  # Deployment job
   deploy:
     environment:
       name: github-pages
