@@ -1,0 +1,174 @@
+.academia-content {
+    width: 100%;
+    max-width: 80vw;
+    padding: 2rem;
+}
+
+.title {
+    font-size: 3rem;
+    margin-bottom: 3rem;
+    font-weight: 700;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+}
+
+.section h3 {
+    font-size: 1.5rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 1.5rem;
+    color: #fff;
+}
+
+.card-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin: 0;
+    color: #fff;
+}
+
+.university {
+    color: rgba(255, 255, 255, 0.9);
+    font-weight: 600;
+    margin: 0;
+    font-size: 1.1rem;
+}
+
+.conference {
+    color: rgba(255, 255, 255, 0.9);
+    font-weight: 600;
+    margin-top: 0.5rem;
+    font-size: 1.1rem;
+}
+
+.period {
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.5);
+    margin: 0;
+}
+
+.desc {
+    margin: 0;
+    font-size: 1rem;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.education-card {
+    display: flex;
+    flex-direction: row !important;
+    align-items: center !important;
+    gap: 1rem;
+}
+
+.university-logo {
+    width: 80px;
+    height: 80px;
+    object-fit: contain;
+}
+
+/* Timeline styles for publications */
+
+
+.timeline {
+    position: relative;
+    padding-top: 0; /* remove extra top padding so line begins at first node */
+    margin-left: 0; /* ensure timeline starts at container left */
+    padding-left: 0;
+    --year-col-width: 50px; /* width of the left year column */
+}
+
+.timeline::before {
+    content: "";
+    position: absolute;
+    left: calc(var(--year-col-width) + 16px); /* place line right of year column */
+    top: 12px; /* start the line at the same vertical offset as the first node */
+    bottom: 0;
+    width: 2px;
+    background: rgba(255, 255, 255, 0.25); /* slightly whiter */
+    z-index: 0;
+}
+
+.timeline-row {
+    display: flex;
+    position: relative;
+    gap: 16px;
+    margin-bottom: 12px;
+    align-items: flex-start;
+}
+
+.timeline-row::before {
+    content: "";
+    position: absolute;
+    left: calc(var(--year-col-width) + 16px);
+    top: 12px;
+    width: 10px;
+    height: 10px;
+    transform: translateX(-50%);
+    border-radius: 50%;
+    background: #00aaff;
+    border-width: 2px;
+    border-style: solid;
+    border-color: #fff;
+    box-shadow: 0 0 0 4px rgba(110, 231, 183, 0.08);
+    z-index: 1;
+}
+
+.timeline-year {
+    width: var(--year-col-width);
+    text-align: left; /* align year text to the left edge */
+    padding-left: 4px;
+    padding-right: 12px;
+    font-size: 0.78rem;
+    color: rgba(255, 255, 255, 0.85);
+    padding-top: 8px;
+    z-index: 2; /* keep year text above the line */
+}
+
+.timeline-items {
+    flex: 1;
+    padding-left: 8px;
+    font-size: 0.82rem; /* smaller overall text for publications */
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.timeline-item {
+    padding: 6px 0;
+}
+
+.item-title {
+    font-size: 0.92rem;
+    font-weight: 600;
+    margin-bottom: 4px;
+    color: rgba(255, 255, 255, 0.95);
+}
+
+.item-meta {
+    font-size: 0.78rem;
+    color: rgba(255, 255, 255, 0.65);
+}
+
+.item-venue {
+    margin-right: 8px;
+}
+
+.item-link {
+    color: rgba(255, 255, 255, 0.7);
+    text-decoration: underline;
+}
+
+@media (max-width: 800px) {
+    .title {
+        font-size: 2.25rem;
+        margin-bottom: 2rem;
+    }
+
+    .grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+}

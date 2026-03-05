@@ -1,0 +1,167 @@
+.hobbies-content {
+    width: 100%;
+    max-width: 80vw;
+    padding: 2rem;
+}
+
+.title {
+    font-size: 3rem;
+    margin-bottom: 3rem;
+    font-weight: 700;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr;
+    gap: 3rem;
+}
+
+.section h3 {
+    font-size: 1.5rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 1.5rem;
+    color: #fff;
+}
+
+.map-card {
+    padding: 1rem;
+    height: 60vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.map-container {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 400px;
+    min-width: 600px;
+}
+
+.chart-wrapper {
+    width: 100%;
+    height: 100%;
+}
+
+.map-hint {
+    margin-top: 1rem;
+    font-size: 0.9rem;
+    opacity: 0.6;
+    text-align: center;
+}
+
+.games-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: start;
+    align-items: center;
+    gap: 1rem;
+}
+
+.game-card {
+    width: 64px;
+    height: 64px;
+    padding: 0 !important;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+    margin-bottom: 0;
+}
+
+.game-icon {
+    width: 48px;
+    height: 48px;
+    aspect-ratio: 1;
+    object-fit: cover;
+    border-radius: 12px;
+    display: block;
+    margin: auto;
+}
+
+.subsection-title {
+    margin-top: 0;
+}
+
+@media (max-width: 850px) {
+    .title {
+        font-size: 2.25rem;
+        margin-bottom: 2rem;
+    }
+
+    .grid {
+        grid-template-columns: 1fr;
+    }
+
+    .games-list {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        gap: 0.75rem;
+    }
+
+    .map-card {
+        height: 40vh;
+        padding: 1rem;
+    }
+
+    /* Small phones: reduce icon sizes, improve spacing and allow map to shrink */
+    @media (max-width: 480px) {
+        .games-list {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.4rem;
+            align-items: center;
+        }
+
+        .game-card {
+            width: 48px;
+            height: 48px;
+        }
+
+        .game-icon {
+            width: 36px;
+            height: 36px;
+            border-radius: 10px;
+        }
+
+        .map-card {
+            height: 30vh;
+            width: 90vw;
+            padding: 0.25rem !important;
+            background: transparent !important;
+            border: none !important;
+            box-shadow: none !important;
+        }
+
+        .map-container {
+            min-width: 0 !important;
+            min-height: 160px;
+            width: 100%;
+            max-width: 100%;
+            padding: 0;
+        }
+
+        /* Ensure the chart element fills its parent and doesn't introduce extra white space */
+        .chart-wrapper,
+        .chart-wrapper > * {
+            width: 100% !important;
+            max-width: 100% !important;
+            height: 100% !important;
+            display: block !important;
+            background: transparent !important;
+        }
+
+        /* Override global .card padding/background on small screens for map */
+        .map-card.card {
+            padding: 0.25rem !important;
+            background: transparent !important;
+            border: none !important;
+        }
+    }
+}

@@ -1,0 +1,96 @@
+/* Define font variables at the root so Taiga and other CSS can pick them up */
+:root {
+  --tui-font-family: 'Space Grotesk', sans-serif;
+  --tui-font-heading: 'Space Grotesk', sans-serif;
+  --tui-font-text: 'Space Grotesk', sans-serif;
+}
+
+/* Apply font globally and provide a high-specificity fallback for Taiga components */
+html, body, tui-root {
+  font-family: 'Space Grotesk', sans-serif;
+}
+
+/* If Taiga's internal rules still override, the following forces the font for its elements */
+tui-root, tui-root * {
+  font-family: 'Space Grotesk', sans-serif !important;
+}
+
+html, body, tui-root {
+  margin: 0;
+  padding: 0;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+}
+
+body {
+  background-color: var(--tui-background-base);
+  color: var(--tui-text-primary);
+  overflow: hidden;
+  /* For custom morph scroll effect */
+}
+
+/* Global Taiga UI Hint Polish */
+tui-hint,
+.tui-hint,
+[tuiHintContent] {
+  background-color: #000 !important;
+  color: #fff !important;
+  border: none !important;
+  padding: 0.5rem 1rem !important;
+  border-radius: 4px !important;
+  font-size: 0.85rem !important;
+  font-weight: 500 !important;
+  box-shadow: none !important;
+}
+
+// Content wrapper
+.section-content {
+  width: 100%;
+  max-width: 80vw;
+  padding-bottom: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  @media (max-width: 768px) {
+    max-width: 92vw;
+    padding-bottom: 1.5rem;
+  }
+}
+
+.card {
+  padding: 2rem;
+  margin-bottom: 2rem;
+  background: rgba(255, 255, 255, 0.25) !important;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  border-radius: 20px !important;
+  transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1) !important;
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg,
+        rgba(255, 255, 255, 0.1),
+        rgba(255, 255, 255, 0));
+    pointer-events: none;
+  }
+
+  &:hover {
+    transform: translateY(-8px) scale(1.02);
+    background: rgba(255, 255, 255, 0.3) !important;
+    border-color: rgba(255, 255, 255, 0.2) !important;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+  }
+}
+
+.markdown-content img {
+  max-width: 100% !important;
+  border-radius: 1rem !important;
+}

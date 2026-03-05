@@ -1,0 +1,221 @@
+<tui-root>
+  <div class="app-container">
+    <!-- Hamburger Button -->
+    <button class="hamburger" [class.open]="isMenuOpen()" (click)="toggleMenu()" aria-label="Toggle menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+
+    <!-- Full-screen Navigation Menu -->
+    <div class="nav-overlay" [class.open]="isMenuOpen()">
+      <div class="nav-menu-content">
+        <img ngSrc="assets/images/logo.svg" alt="@cngthnh" class="nav-logo" width="64" height="64" />
+        <nav class="nav-list">
+          <a class="nav-item" (click)="navigateTo(0)" [class.active]="currentIndex() === 0">
+            <span class="nav-icon">
+              <!-- Home/Intro Icon -->
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round">
+                <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+                <polyline points="9 22 9 12 15 12 15 22" />
+              </svg>
+            </span>
+            <span class="nav-text">Introduction</span>
+          </a>
+          <a class="nav-item" (click)="navigateTo(1)" [class.active]="currentIndex() === 1">
+            <span class="nav-icon">
+              <!-- Academia Icon -->
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round">
+                <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z" />
+                <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z" />
+              </svg>
+            </span>
+            <span class="nav-text">Academia</span>
+          </a>
+          <a class="nav-item" (click)="navigateTo(2)" [class.active]="currentIndex() === 2">
+            <span class="nav-icon">
+              <!-- Experiences Icon -->
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round">
+                <rect width="20" height="14" x="2" y="7" rx="2" ry="2" />
+                <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16" />
+              </svg>
+            </span>
+            <span class="nav-text">Experiences</span>
+          </a>
+          <a class="nav-item" (click)="navigateTo(3)" [class.active]="currentIndex() === 3">
+            <span class="nav-icon">
+              <!-- Hobbies Icon -->
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10" />
+                <path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20" />
+                <path d="M2 12h20" />
+              </svg>
+            </span>
+            <span class="nav-text">Hobbies</span>
+          </a>
+          <a class="nav-item" (click)="navigateTo(4)" [class.active]="currentIndex() === 4">
+            <span class="nav-icon">
+              <!-- Blog Icon -->
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round">
+                <path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z" />
+                <polyline points="14 2 14 8 20 8" />
+              </svg>
+            </span>
+            <span class="nav-text">Blog</span>
+          </a>
+        </nav>
+      </div>
+    </div>
+
+    <!-- Morphing Background -->
+    <div class="morph-bg" [class.transitioning]="isSweeping()" [attr.data-section]="currentIndex()"
+      [attr.data-direction]="direction()">
+      <div class="blobs-container">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+        <div class="blob blob-3"></div>
+        <div class="blob blob-4"></div>
+      </div>
+
+      <div class="rect-layers">
+        <div *ngFor="let section of sections; let i = index">
+          <div *ngIf="i !== 0" class="layer" [class]="'layer-' + section.toLowerCase()"
+            [class.active]="currentIndex() === i" [class.previous]="previousIndex() === i"
+            [style.z-index]="currentIndex() === i ? 20 : (previousIndex() === i ? 15 : i)"
+            [style.animation-delay.s]="getLayerDelay(i)">
+          </div>
+        </div>
+      </div>
+
+      <!-- SVG Filter for Gooey Effect -->
+      <svg xmlns="http://www.w3.org/2000/svg" version="1.1" class="goo-filter">
+        <defs>
+          <filter id="goo">
+            <feGaussianBlur in="SourceGraphic" stdDeviation="15" result="blur" />
+            <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 20 -10"
+              result="goo" />
+            <feComposite in="SourceGraphic" in2="goo" operator="atop" />
+          </filter>
+        </defs>
+      </svg>
+
+      <!-- Optional: Keeping a subtle morphing path in the foreground or background if desired -->
+      <!-- For now, the blobs will be the main 'morph' element -->
+    </div>
+
+    <!-- Scroll Sections Wrapper -->
+    <div class="sections-wrapper" [style.transform]="transformStyle()">
+      <!-- Page 1: Main Page -->
+      <section class="section centered left-section" #sectionElement
+        [class.active]="currentIndex() === 0 && !isFadingOut() && !isEntering()"
+        [class.fading-out]="previousIndex() === 0 && isFadingOut()"
+        [class.entering]="currentIndex() === 0 && isEntering()">
+        <app-main-page (onNavigate)="goToSection($event)"></app-main-page>
+      </section>
+
+      <!-- Page 2: Academia -->
+      <section class="section" #sectionElement [class.active]="currentIndex() === 1 && !isFadingOut() && !isEntering()"
+        [class.fading-out]="previousIndex() === 1 && isFadingOut()"
+        [class.entering]="currentIndex() === 1 && isEntering()">
+        <app-academia></app-academia>
+      </section>
+
+      <!-- Page 3: Experiences -->
+      <section class="section" #sectionElement [class.active]="currentIndex() === 2 && !isFadingOut() && !isEntering()"
+        [class.fading-out]="previousIndex() === 2 && isFadingOut()"
+        [class.entering]="currentIndex() === 2 && isEntering()">
+        <app-experiences></app-experiences>
+      </section>
+
+      <!-- Page 4: Hobbies -->
+      <section class="section" #sectionElement [class.active]="currentIndex() === 3 && !isFadingOut() && !isEntering()"
+        [class.fading-out]="previousIndex() === 3 && isFadingOut()"
+        [class.entering]="currentIndex() === 3 && isEntering()">
+        <app-hobbies></app-hobbies>
+      </section>
+
+      <!-- Page 5: Blog -->
+      <section class="section" #sectionElement [class.active]="currentIndex() === 4 && !isFadingOut() && !isEntering()"
+        [class.fading-out]="previousIndex() === 4 && isFadingOut()"
+        [class.entering]="currentIndex() === 4 && isEntering()">
+        <app-blog (onPostSelect)="selectedPost.set($event)"></app-blog>
+      </section>
+    </div>
+
+    <!-- Full-page Overlay for Post Details -->
+    <div class="full-post-overlay" *ngIf="selectedPost()" [class.closing]="isClosingPost()">
+      <div class="overlay-background" (click)="closePost()"></div>
+
+      <header class="sticky-blog-header" [class.visible]="showStickyHeader()">
+        <button tuiButton appearance="flat" size="m" class="back-button in-header" (click)="closePost()">
+          <svg class="back-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+            stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="15 18 9 12 15 6"></polyline>
+          </svg>
+        </button>
+        <div class="header-content">
+          <div class="sticky-post-title">{{ selectedPost().title }}</div>
+          <div class="sticky-section-name">{{ activeSection() }}</div>
+        </div>
+      </header>
+
+      <!-- Floating back button shown when sticky header is not visible -->
+      <button tuiButton appearance="flat" size="m" class="back-button overlay-floating" (click)="closePost()" [class.hidden]="showStickyHeader()">
+        <svg class="back-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+          stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="15 18 9 12 15 6"></polyline>
+        </svg>
+        Back
+      </button>
+
+      <div class="overlay-content" (scroll)="onOverlayScroll($event)">
+
+        <aside class="blog-sidebar" *ngIf="headings().length > 0">
+          <div class="sidebar-title">Table of Contents</div>
+          <div class="sidebar-scroll">
+            <div class="sidebar-item" *ngFor="let heading of headings()"
+              [class.active]="activeSection() === heading.text" [style.padding-left.rem]="(heading.level - 1) * 0.75"
+              (click)="scrollToHeading(heading.id)">
+              <span class="dot"></span>
+              {{ heading.text }}
+            </div>
+          </div>
+        </aside>
+
+        <div class="viewer-container" #markdownWrapper>
+            <div class="viewer-header">
+              <div class="viewer-cover-wrapper" *ngIf="selectedPost().coverImage">
+                <img src="{{selectedPost().coverImage}}" alt="{{selectedPost().title}}" class="viewer-cover" />
+              </div>
+              <h1 class="viewer-title">{{ selectedPost().title }}</h1>
+              <p class="viewer-meta">{{ selectedPost().date }}
+                •
+                <span class="viewer-tags" *ngIf="selectedPost().tags?.length">
+                  <span class="tag" *ngFor="let t of selectedPost().tags">{{ t }}</span>
+                </span>
+              </p>
+            </div>
+          <hr class="viewer-divider" />
+          <markdown [data]="selectedMarkdown() || ''" class="markdown-content" (ready)="onMarkdownReady(markdownWrapper)">
+          </markdown>
+          <div class="bottom-spacer"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Section Indicator -->
+    <div class="section-indicator">
+      {{ sections[currentIndex()] }}
+    </div>
+
+    <nav class="nav-dots">
+      <button *ngFor="let section of sections; let i = index" class="nav-dot" [class.active]="currentIndex() === i"
+        (click)="goToSection(i)" [tuiHint]="section" tuiHintDirection="left"></button>
+    </nav>
+  </div>
+</tui-root>

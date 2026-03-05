@@ -1,0 +1,30 @@
+<div class="fixed-title">
+    <h2 class="title">Hobbies</h2>
+</div>
+
+<div class="section-content">
+    <div class="grid">
+        <div class="section">
+            <h3 class="subsection-title">Travel</h3>
+            <div tuiCardLarge tuiAppearance="floating" class="map-card card">
+                <div class="map-container">
+                    <div highchartsChart
+                    constructorType="mapChart"
+                        [options]="chartOptions"
+                        class="chart-wrapper">
+                </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h3 class="subsection-title">Games</h3>
+            <div class="games-list">
+                <div tuiCardLarge tuiAppearance="floating" class="game-card card" *ngFor="let game of games"
+                    [tuiHint]="game.name" tuiHintDirection="bottom">
+                    <img [ngSrc]="game.image" [alt]="game.name" class="game-icon" width="96" height="96" />
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

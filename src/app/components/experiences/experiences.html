@@ -1,0 +1,21 @@
+<div class="fixed-title">
+    <h2 class="title">Experiences</h2>
+</div>
+
+<div class="section-content">
+    <div class="timeline">
+        <div class="entry" *ngFor="let item of jobs">
+            <div class="year-side">
+                <span class="period">{{ item.period }}</span>
+            </div>
+            <div class="line-side">
+                <div class="dot"></div>
+            </div>
+            <div class="content-side">
+                <h3 class="role">{{ item.role }}</h3>
+                <h4 class="company">{{ item.company }}</h4>
+                <p class="desc">{{ item.description }}</p>
+            </div>
+        </div>
+    </div>
+</div>

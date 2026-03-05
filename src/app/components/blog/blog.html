@@ -1,0 +1,25 @@
+<div class="fixed-title">
+    <h2 class="title">Blog</h2>
+</div>
+
+<div class="section-content">
+    <div class="posts-grid">
+        <div tuiCardLarge tuiAppearance="floating" class="post-card card" *ngFor="let post of posts"
+            (click)="openPost(post)">
+            <ng-container>
+                <div class="post-meta-row">
+                  <span class="post-date">{{ post.date }}</span>
+                  <div class="post-tags" *ngIf="post.tags?.length">
+                    <span class="tag" *ngFor="let t of post.tags">{{ t }}</span>
+                  </div>
+                </div>
+                <h3 class="post-title">{{ post.title }}</h3>
+                <p class="post-excerpt">{{ post.excerpt }}</p>
+
+                <div class="post-footer">
+                    <span class="read-more">Read Full Post →</span>
+                </div>
+            </ng-container>
+        </div>
+    </div>
+</div>

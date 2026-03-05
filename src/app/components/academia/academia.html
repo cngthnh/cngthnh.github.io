@@ -1,0 +1,53 @@
+<div class="fixed-title">
+    <h2 class="title">Academia</h2>
+</div>
+
+<div class="section-content">
+    <div class="grid">
+        <div class="section">
+            <h3>Education</h3>
+            <div tuiCardLarge tuiAppearance="floating" class="card education-card">
+                <img ngSrc="assets/images/logo/jaist.png" alt="JAIST Logo" class="university-logo" width="80" height="80"/>
+                <div>
+                    <h4 class="card-title">MSc in Computer Science</h4>
+                    <p class="university">Japan Advanced Institute of Science and Technology (JAIST)</p>
+                    <p class="period">2025 - 2026</p>
+                    <p class="desc">Focus on Multimodal Signal Processing and AI.</p>
+                </div>
+            </div>
+            <div tuiCardLarge tuiAppearance="floating" class="card education-card">
+                <img ngSrc="assets/images/logo/hcmus.png" alt="HCMUS Logo" class="university-logo" width="80" height="80"/>
+                <div>
+                    <h4 class="card-title">B.S. in Information Technology (Honors)</h4>
+                    <p class="university">Vietnam National University, Ho Chi Minh City - University of Science</p>
+                    <p class="period">2019 - 2023</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h3>Publications</h3>
+            <div *ngIf="loading" class="loading">Đang tải publications...</div>
+            <div *ngIf="error" class="error">{{ error }}</div>
+
+            <div *ngIf="!loading && !error">
+                <div *ngIf="years.length === 0" class="muted">Chưa có publications.</div>
+
+                <div class="timeline" *ngIf="years.length > 0">
+                    <div class="timeline-row" *ngFor="let y of years">
+                        <div class="timeline-year">{{ y }}</div>
+                        <div class="timeline-items">
+                            <div class="timeline-item" *ngFor="let pub of publicationsByYear[y]">
+                                <div class="item-title">{{ pub.title }}</div>
+                                <div class="item-meta">
+                                    <span *ngIf="pub.venue" class="item-venue">{{ pub.venue }}</span>
+                                    <a *ngIf="pub.url" [href]="pub.url" target="_blank" rel="noopener" class="item-link">DOI</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
