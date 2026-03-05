@@ -61,6 +61,7 @@ export class AppComponent {
   showStickyHeader = signal<boolean>(false);
   isClosingPost = signal<boolean>(false);
   previousScroll = signal<number>(0);
+  isCoverLoaded = signal<boolean>(false);
 
   transformStyle = computed(() => `translateY(-${this.currentIndex() * 100}vh)`);
 
@@ -86,6 +87,7 @@ export class AppComponent {
       console.log('Selected post changed (constructor effect):', this.selectedPost());
       // Reset sticky header state and ensure overlay starts at top for new posts
       this.showStickyHeader.set(false);
+      this.isCoverLoaded.set(false);
       setTimeout(() => {
         try {
           const overlay = document.querySelector('.overlay-content') as HTMLElement | null;

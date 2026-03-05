@@ -189,8 +189,8 @@
 
         <div class="viewer-container" #markdownWrapper>
             <div class="viewer-header">
-              <div class="viewer-cover-wrapper" *ngIf="selectedPost().coverImage">
-                <img src="{{selectedPost().coverImage}}" alt="{{selectedPost().title}}" class="viewer-cover" />
+              <div class="viewer-cover-wrapper" *ngIf="selectedPost().coverImage" [class.loaded]="isCoverLoaded()">
+                <img src="{{selectedPost().coverImage}}" alt="{{selectedPost().title}}" class="viewer-cover" (load)="isCoverLoaded.set(true)" />
               </div>
               <h1 class="viewer-title">{{ selectedPost().title }}</h1>
               <p class="viewer-meta">{{ selectedPost().date }}
