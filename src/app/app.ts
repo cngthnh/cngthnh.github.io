@@ -63,6 +63,8 @@ export class AppComponent {
   previousScroll = signal<number>(0);
   isCoverLoaded = signal<boolean>(false);
 
+  private touchStartY = 0;
+
   transformStyle = computed(() => `translateY(-${this.currentIndex() * 100}vh)`);
 
   constructor(private http: HttpClient) {
@@ -328,6 +330,40 @@ export class AppComponent {
         } else {
           this.armSecondScrollWindow();
         }
+      }
+    }
+  }
+
+  @HostListener('touchstart', ['$event'])
+  onTouchStart(event: TouchEvent) {
+    this.touchStartY = event.touches[0].clientY;
+  }
+
+  @HostListener('touchend', ['$event'])
+  onTouchEnd(event: TouchEvent) {
+    if (this.isTransitioning || this.selectedPost()) return;
+
+    const touchEndY = event.changedTouches[0].clientY;
+    const deltaY = this.touchStartY - touchEndY;
+
+    // Minimum swipe distance to be considered a deliberate swipe (e.g., 50px)
+    if (Math.abs(deltaY) < 50) return;
+
+    const currentSection = this.sectionElements.toArray()[this.currentIndex()]?.nativeElement;
+    if (!currentSection) return;
+
+    const isAtBottom = currentSection.scrollTop + currentSection.clientHeight >= currentSection.scrollHeight - 2;
+    const isAtTop = currentSection.scrollTop <= 2;
+
+    if (deltaY > 0 && this.currentIndex() < this.sections.length - 1) {
+      // Swiping up -> scroll down
+      if (isAtBottom) {
+        this.scroll(1);
+      }
+    } else if (deltaY < 0 && this.currentIndex() > 0) {
+      // Swiping down -> scroll up
+      if (isAtTop) {
+        this.scroll(-1);
       }
     }
   }

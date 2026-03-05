@@ -1,6 +1,7 @@
 :host {
     display: block;
     height: 100vh;
+    height: 100dvh;
     width: 100vw;
     overflow: hidden;
     position: relative;
@@ -360,6 +361,7 @@
     display: flex;
     flex-direction: column;
     height: 100vh;
+    height: 100dvh;
     transition: transform 1s cubic-bezier(0.645, 0.045, 0.355, 1);
     will-change: transform;
     color: #fff;
@@ -371,7 +373,7 @@
 }
 
 .section {
-    flex: 0 0 100vh;
+    flex: 0 0 100dvh;
     width: 100vw;
     display: flex;
     flex-direction: column;
@@ -387,6 +389,8 @@
     // Internal Scroll Support
     overflow-y: auto;
     overflow-x: hidden;
+    height: 100vh;
+    height: 100d hidden;
     height: 100vh;
 
     // Transition States
