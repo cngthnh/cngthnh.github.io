@@ -52,41 +52,11 @@ export class Academia implements OnInit {
   parseOrcidWorks(data: any): Publication[] {
     const pubs: Publication[] = [];
     const groups = data?.group || [];
-    const SOURCE_PRIORITY: { [key: string]: number } = {
-      'crossref': 0,
-      'scopus - elsevier': 1,
-      'pubmed central': 2,
-      'datacite': 3
-    };
-  
+    
     for (const g of groups) {
       const summaries: any[] = g['work-summary'] || [];
       if (summaries.length === 0) continue;
-  
-      const sortedSummaries = [...summaries].sort((a, b) => {
-        const idxA = parseInt(a?.['display-index'] || '1', 10);
-        const idxB = parseInt(b?.['display-index'] || '1', 10);
-  
-        if (idxA !== idxB) {
-          return idxA - idxB;
-        }
-  
-        const sourceA = (a?.source?.['source-name']?.value || '').toLowerCase();
-        const sourceB = (b?.source?.['source-name']?.value || '').toLowerCase();
-  
-        const priorityA = SOURCE_PRIORITY[sourceA] !== undefined ? SOURCE_PRIORITY[sourceA] : 999;
-        const priorityB = SOURCE_PRIORITY[sourceB] !== undefined ? SOURCE_PRIORITY[sourceB] : 999;
-  
-        if (priorityA !== priorityB) {
-          return priorityA - priorityB;
-        }
-  
-        const dateA = a?.['last-modified-date']?.value || 0;
-        const dateB = b?.['last-modified-date']?.value || 0;
-        return dateB - dateA;
-      });
-  
-      const bestWs = sortedSummaries[0];
+      const bestWs = summaries[0];
   
       const title =
         bestWs?.title?.title?.value ||
