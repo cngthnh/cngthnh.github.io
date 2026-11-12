@@ -23,13 +23,6 @@ export class Hobbies {
   Highcharts = Highcharts;
   @ViewChild(HighchartsChartDirective) chartDirective?: HighchartsChartDirective;
 
-  visitedCountries = [
-    { name: 'USA', code: 'US', frequency: 2 },
-    { name: 'Vietnam', code: 'VN', frequency: 10 },
-    { name: 'Japan', code: 'JP', frequency: 3 },
-    { name: 'United Kingdom', code: 'GB', frequency: 1 },
-  ];
-
   games = [
     { name: 'GTA V', image: 'assets/images/games/gta_v.jpg' },
     { name: 'League of Legends', image: 'assets/images/games/league_of_legends.jpg' },
@@ -113,7 +106,9 @@ export class Hobbies {
           allAreas: true,
           data: [
             ['vn', 4],
-            ['jp', 3],
+            ['jp', 6],
+            ['au', 1],
+            ['cn', 1]
           ],
         } as Highcharts.SeriesMapOptions,
       ],
