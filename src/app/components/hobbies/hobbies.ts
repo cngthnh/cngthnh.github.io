@@ -75,7 +75,7 @@ export class Hobbies {
       },
       colorAxis: {
         min: 0,
-        minColor: '#fff4e6',
+        minColor: '#ffd39c',
         maxColor: '#ff8a00',
         // fallback for missing values
         nullColor: '#ffffff',
